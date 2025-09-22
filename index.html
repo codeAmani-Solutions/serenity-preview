@@ -1,204 +1,307 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>T&T Serenity Care — Preview</title>
-<style>
-  :root{
-    --glass-bg-light: rgba(255,255,255,0.76);
-    --glass-bg-dark: rgba(18,18,18,0.72);
-    --glass-border-light: rgba(255,255,255,0.65);
-    --glass-border-dark: rgba(255,255,255,0.16);
-    --radius: 20px;
-    --shadow: 0 10px 30px rgba(0,0,0,0.15);
-    --bg-image: url('./assets/serenity-bg.jpg');
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#0f172a; line-height:1.45;}
-  .dark body{color:#e5e7eb}
-  .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}
-  .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
-  .hover-float:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.22); }
-  .section{ padding: clamp(3rem, 6vw, 6rem) 1rem; }
-  .container{ max-width: 1100px; margin: 0 auto; }
-  .pill{ display:inline-block; border:1px solid rgba(255,255,255,.6); padding:.4rem .8rem; border-radius:999px; font-size:.8rem; }
-  .subtitle{ font-size: clamp(1rem, 2.5vw, 1.25rem); opacity:.85 }
-  .grid{ display:grid; gap: clamp(1rem, 2vw, 1.5rem); }
-  @media (min-width: 900px){ .grid-cols-3{ grid-template-columns: repeat(3, 1fr);} }
-  @media (max-width: 899px){ .grid-cols-1{ grid-template-columns: 1fr;} }
-  .btn{ display:inline-block; padding:.85rem 1rem; border-radius:14px; font-weight:600; border:1px solid rgba(255,255,255,.55); text-decoration:none }
-  .btn-primary{ background: linear-gradient(90deg,#14b8a6,#6366f1,#d946ef); color:#fff; }
-  .btn-ghost{ background: rgba(255,255,255,.4); }
-  .card-title{ font-size:1.2rem; font-weight:700; }
-  .list{ margin:.5rem 0 0 1.1rem; }
-  footer{ font-size:.9rem; opacity:.9; }
-  .contact-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .bg-canvas{ position: fixed; inset: 0; z-index: -2; } 
-  .bg-photo{ position:fixed; inset:0; z-index:-3; background-image: var(--bg-image); background-size:cover; background-position:center; filter:saturate(1.1) brightness(0.9); transform:scale(1.02); }
-  .bg-vignette{ position:fixed; inset:0; z-index:-1; pointer-events:none; background: radial-gradient(120% 80% at 50% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.22) 100%), linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.22)); mix-blend-mode:multiply; }
-  h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: .75rem 0 0 }
-  h2{ font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 }
-</style>
-</head>
-<body>
-   <div class="bg-photo"
-       style="background-image:url('./assets/serenity-bg.jpg')"
-       aria-hidden="true"></div>
-  <canvas id="grad" class="bg-canvas" aria-hidden="true"></canvas>
-  <div class="bg-vignette" aria-hidden="true"></div>
-  
-  <section id="home" class="section">
-    <div class="container">
-      <div class="glass" style="padding:clamp(2rem,4vw,3rem)">
-        <div class="pill">APD-Licensed Group Home — Central Florida</div>
-        <h1>Care that meets you where you are.</h1>
-        <p class="subtitle">Personalized, compassionate support delivered with dignity, reliability, and heart. Empowering lives through compassionate care.</p>
-        <div style="margin-top:1rem; display:flex; gap:.75rem; flex-wrap:wrap">
-          <a href="#contact" class="btn btn-primary">Contact Us</a>
-          <a href="#services" class="btn btn-ghost">Our Services</a>
-        </div>
-      </div>
-    </div>
-  </section>
+import React, { useEffect, useRef } from "react";
 
-  <section id="services" class="section">
-    <div class="container">
-      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
-        <h2>Our Services</h2>
-        <p class="subtitle">Clear, personalized support plans that fit real lives.</p>
-        <div class="grid grid-cols-3 grid-cols-1" style="margin-top:1rem">
-          <article class="glass hover-float" style="padding:1rem">
-            <div class="card-title">24/7 Care</div>
-            <ul class="list">
-              <li>Round-the-clock support</li><li>On-call nursing oversight</li><li>Crisis response-ready</li>
-            </ul>
-          </article>
-          <article class="glass hover-float" style="padding:1rem">
-            <div class="card-title">Personal Supports</div>
-            <ul class="list">
-              <li>Daily living assistance</li><li>Medication reminders</li><li>Light housekeeping</li>
-            </ul>
-          </article>
-          <article class="glass hover-float" style="padding:1rem">
-            <div class="card-title">Respite (Under 21)</div>
-            <ul class="list">
-              <li>Short-term coverage</li><li>Family relief</li><li>Safe, RN-led protocols</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
+/**
+ * SerenityCareApp (TypeScript/React)
+ * Fix for: SyntaxError: /index.tsx: Unexpected token (1:0)
+ * Cause: The canvas was trying to execute a full HTML document inside a TSX file.
+ * Fix: Provide a proper React component that renders the same UI, with CSS injected
+ * via a <style> tag and the animated gradient handled in a useEffect.
+ *
+ * Notes:
+ * - This component can be used as your app's root export in index.tsx.
+ * - Background photo is optional; set the CSS var --bg-image below to a URL/data URI.
+ * - Includes lightweight runtime "tests" (console.assert) so you can verify behavior quickly.
+ */
 
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
-        <h2>Let’s talk</h2>
-        <p class="subtitle">Whether you’re exploring options or ready to begin, we’re here to help.</p>
-        <div class="contact-grid" style="margin-top:1rem">
-          <div class="glass" style="padding:1rem">
-            <div class="card-title">Contact Details</div>
-            <ul class="list">
-              <li><strong>Email:</strong> <a href="mailto:info@tntserenitycare.com">info@tntserenitycare.com</a></li>
-              <li><strong>Main:</strong> <a href="tel:+14077032787">(407) 703‑2787</a></li>
-              <li><strong>Address:</strong> 241 Caldwell St, Apopka, FL 32712</li>
-            </ul>
-          </div>
-          <form class="glass" style="padding:1rem">
-            <div class="card-title">Send a message</div>
-            <label class="block">Full name<br/>
-              <input required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-            </label>
-            <label class="block" style="display:block;margin-top:.75rem">Email or phone<br/>
-              <input required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-            </label>
-            <label class="block" style="display:block;margin-top:.75rem">How can we help?<br/>
-              <textarea rows="4" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"></textarea>
-            </label>
-            <button type="submit" class="btn btn-primary" style="margin-top:.75rem">Send message</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+export default function SerenityCareApp() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  <footer class="section" style="padding-top:0">
-    <div class="container">
-      <div class="glass" style="padding:1rem 1.25rem">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
-          <div>
-            <div style="font-weight:700">T&T Serenity Care</div>
-            <div style="opacity:.8">© {{new Date().getFullYear()}} T&T Serenity Care. All rights reserved.</div>
-          </div>
-          <nav style="opacity:.9;display:flex;gap:1rem">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
+  // CSS (liquid/frosted glass look) injected once
+  const css = `
+    :root{
+      --glass-bg-light: rgba(255,255,255,0.76);
+      --glass-bg-dark: rgba(18,18,18,0.72);
+      --glass-border-light: rgba(255,255,255,0.65);
+      --glass-border-dark: rgba(255,255,255,0.16);
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.15);
+      /* Set your background photo here (URL or data URI). If empty, gradient still renders. */
+      --bg-image: url('./assets/serenity-bg.jpg');
+    }
+    *{box-sizing:border-box}
+    body{margin:0}
+    .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}  
+    .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+    .hover-float:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.22); }
+    .section{ padding: clamp(3rem, 6vw, 6rem) 1rem; }
+    .container{ max-width: 1100px; margin: 0 auto; }
+    .pill{ display:inline-block; border:1px solid rgba(255,255,255,.6); padding:.4rem .8rem; border-radius:999px; font-size:.8rem; }
+    .subtitle{ font-size: clamp(1rem, 2.5vw, 1.2rem); opacity:.85 }
+    .grid{ display:grid; gap: clamp(1rem, 2vw, 1.5rem); }
+    @media (min-width: 900px){ .grid-cols-3{ grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 899px){ .grid-cols-1{ grid-template-columns: 1fr;} }
+    .btn{ display:inline-block; padding:.85rem 1rem; border-radius:14px; font-weight:600; border:1px solid rgba(255,255,255,.55); text-decoration:none }
+    .btn-primary{ background: linear-gradient(90deg,#14b8a6,#6366f1,#d946ef); color:#fff; }
+    .btn-ghost{ background: rgba(255,255,255,.4); }
+    .card-title{ font-size:1.15rem; font-weight:700; }
+    .list{ margin:.5rem 0 0 1.1rem; }
+    footer{ font-size:.9rem; opacity:.9; }
+    .contact-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .bg-canvas{ position: fixed; inset: 0; z-index: -2; } 
+    .bg-photo{ position:fixed; inset:0; z-index:-3; background-image: var(--bg-image); background-size:cover; background-position:center; filter:saturate(1.1) brightness(0.9); transform:scale(1.02); }
+    .bg-vignette{ position:fixed; inset:0; z-index:-1; pointer-events:none; background: radial-gradient(120% 80% at 50% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.22) 100%), linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.22)); mix-blend-mode:multiply; }
+    /* Fixed top brand bar */
+    header.site-header{ position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter: blur(12px) saturate(160%); -webkit-backdrop-filter: blur(12px) saturate(160%); background: rgba(255,255,255,0.65); border-bottom:1px solid rgba(255,255,255,0.4); }
+    header.site-header .inner{ max-width:1100px; margin:0 auto; padding: .75rem 1rem; display:flex; align-items:center; justify-content:space-between; }
+    header.site-header .brand{ font-weight:800; letter-spacing:.02em; }
+    header.site-header nav a{ margin-left:1rem; text-decoration:none; color:inherit; opacity:.85 }
+    .spacer{ height: 56px; }
+    h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: .75rem 0 0 }
+    h2{ font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 }
+    main{ color:#0f172a; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+  `;
+
+  // Animated gradient canvas (gentle motion, respects reduced motion)
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    let rafId = 0;
+
+    const DPR = (typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1;
+    const orbs = Array.from({ length: 7 }).map(() => ({ 
+      x: Math.random(), y: Math.random(), r: 120 + Math.random()*160,
+      vx: (Math.random()-0.5)*0.0006, vy: (Math.random()-0.5)*0.0006,
+      hue: Math.floor(180 + Math.random()*180), alpha: 0.18 + Math.random()*0.18
+    }));
+
+    const draw = () => {
+      const rect = canvas.getBoundingClientRect();
+      // Resize safely each frame (cheap at 60fps for a small canvas)
+      const needW = Math.max(1, Math.floor(rect.width * DPR));
+      const needH = Math.max(1, Math.floor(rect.height * DPR));
+      if (canvas.width !== needW) canvas.width = needW;
+      if (canvas.height !== needH) canvas.height = needH;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      ctx.clearRect(0,0,rect.width,rect.height);
+
+      const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+      g.addColorStop(0,"#14b8a6"); g.addColorStop(0.5,"#6366f1"); g.addColorStop(1,"#d946ef");
+      ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
+
+      orbs.forEach(o=>{
+        o.x += o.vx; o.y += o.vy;
+        if (o.x < -0.2 || o.x > 1.2) o.vx *= -1;
+        if (o.y < -0.2 || o.y > 1.2) o.vy *= -1;
+        const cx = o.x * rect.width; const cy = o.y * rect.height;
+        const rg = ctx.createRadialGradient(cx,cy,0,cx,cy,o.r);
+        rg.addColorStop(0, `hsla(${o.hue},80%,60%,${o.alpha})`);
+        rg.addColorStop(1, `hsla(${(o.hue+60)%360},70%,50%,0)`);
+        ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(cx,cy,o.r,0,Math.PI*2); ctx.fill();
+      });
+      rafId = requestAnimationFrame(draw);
+    };
+
+    const media = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (media && media.matches) {
+      const rect = canvas.getBoundingClientRect();
+      const needW = Math.max(1, Math.floor(rect.width * DPR));
+      const needH = Math.max(1, Math.floor(rect.height * DPR));
+      if (canvas.width !== needW) canvas.width = needW;
+      if (canvas.height !== needH) canvas.height = needH;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+      g.addColorStop(0,"#14b8a6"); g.addColorStop(0.5,"#6366f1"); g.addColorStop(1,"#d946ef");
+      ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
+    } else {
+      draw();
+    }
+
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  // Runtime smoke tests to help catch regressions quickly in preview environments
+  useEffect(() => {
+    const header = document.querySelector('header.site-header') as HTMLElement | null;
+    const canvas = canvasRef.current;
+    const brand = document.querySelector('.brand') as HTMLElement | null;
+    console.assert(!!header, 'Header exists');
+    if (header) {
+      const pos = getComputedStyle(header).position;
+      console.assert(pos === 'fixed', `Header should be fixed, got ${pos}`);
+    }
+    console.assert(!!brand && brand.textContent?.includes('T&T SERENITY CARE'), 'Brand text present');
+    console.assert(!!canvas, 'Gradient canvas present');
+    const ids = ['home','services','why','scope','contact'];
+    ids.forEach(id => console.assert(!!document.getElementById(id), `Section #${id} exists`));
+  }, []);
+
+  return (
+    <main>
+      {/* Style injection */}
+      <style>{css}</style>
+
+      {/* Fixed brand header */}
+      <header className="site-header">
+        <div className="inner">
+          <div className="brand">T&T SERENITY CARE</div>
+          <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#why">Why Us</a>
+            <a href="#scope">Who We Serve</a>
+            <a href="#contact">Contact</a>
           </nav>
         </div>
-      </div>
-    </div>
-  </footer>
+      </header>
+      <div className="spacer" aria-hidden="true" />
 
-<script>
-// Animated gradient orbs on canvas
-(function() {
-  const canvas = document.getElementById('grad');
-  const ctx = canvas.getContext('2d');
-  const DPR = window.devicePixelRatio || 1;
-  const orbs = Array.from({ length: 7 }).map(() => ({ 
-    x: Math.random(),
-    y: Math.random(),
-    r: 120 + Math.random()*160,
-    vx: (Math.random()-0.5)*0.0006,
-    vy: (Math.random()-0.5)*0.0006,
-    hue: Math.floor(180 + Math.random()*180),
-    alpha: 0.18 + Math.random()*0.18
-  }));
+      {/* Background layers */}
+      <div className="bg-photo" aria-hidden="true" />
+      <canvas ref={canvasRef} className="bg-canvas" aria-hidden="true" />
+      <div className="bg-vignette" aria-hidden="true" />
 
-  function frame() {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = Math.floor(rect.width * DPR);
-    canvas.height = Math.floor(rect.height * DPR);
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-    ctx.clearRect(0,0,rect.width,rect.height);
+      {/* HERO */}
+      <section id="home" className="section">
+        <div className="container">
+          <div className="glass" style={{ padding: 'clamp(2rem,4vw,3rem)' }}>
+            <div className="pill">APD-Licensed Group Home — Central Florida</div>
+            <h1>Care that meets you where you are.</h1>
+            <p className="subtitle">Personalized, compassionate support delivered with dignity, reliability, and heart. Empowering lives through compassionate care.</p>
+            <div style={{ marginTop: '1rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap' }}>
+              <a href="#contact" className="btn btn-primary">Contact Us</a>
+              <a href="#services" className="btn btn-ghost">Our Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
-    g.addColorStop(0,"#14b8a6");
-    g.addColorStop(0.5,"#6366f1");
-    g.addColorStop(1,"#d946ef");
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,rect.width,rect.height);
+      {/* SERVICES */}
+      <section id="services" className="section">
+        <div className="container">
+          <div className="glass" style={{ padding: 'clamp(2rem,4vw,2.5rem)' }}>
+            <h2>Our Services</h2>
+            <p className="subtitle">Clear, personalized support plans that fit real lives.</p>
+            <div className="grid grid-cols-3 grid-cols-1" style={{ marginTop: '1rem' }}>
+              {[
+                { title: '24/7 Care', bullets: ['Round-the-clock support','On-call nursing oversight','Crisis response-ready']},
+                { title: 'Personal Supports', bullets: ['Daily living assistance','Medication reminders','Light housekeeping']},
+                { title: 'Respite (Under 21)', bullets: ['Short-term coverage','Family relief','Safe, RN-led protocols']},
+                { title: 'Life Skills Development I', bullets: ['Community access','Appointments & activities','Skill-building']},
+                { title: 'Residential Nursing (RN)', bullets: ['Care planning','Clinical coordination','Family updates']},
+                { title: 'Skilled Nursing / Skilled Respite (RN)', bullets: ['Clinical procedures','Observation & documentation','Coordination with providers']},
+              ].map((card, idx) => (
+                <article key={idx} className="glass hover-float" style={{ padding: '1rem' }}>
+                  <div className="card-title">{card.title}</div>
+                  <ul className="list">
+                    {card.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    orbs.forEach(o=>{
-      o.x += o.vx; o.y += o.vy;
-      if (o.x < -0.2 || o.x > 1.2) o.vx *= -1;
-      if (o.y < -0.2 || o.y > 1.2) o.vy *= -1;
-      const cx = o.x * rect.width;
-      const cy = o.y * rect.height;
-      const rg = ctx.createRadialGradient(cx,cy,0,cx,cy,o.r);
-      rg.addColorStop(0, `hsla(${o.hue},80%,60%,${o.alpha})`);
-      rg.addColorStop(1, `hsla(${(o.hue+60)%360},70%,50%,0)`);
-      ctx.fillStyle = rg;
-      ctx.beginPath(); ctx.arc(cx,cy,o.r,0,Math.PI*2); ctx.fill();
-    });
+      {/* WHY US / FOUNDERS */}
+      <section id="why" className="section">
+        <div className="container">
+          <div className="glass" style={{ padding: 'clamp(2rem,4vw,2.5rem)' }}>
+            <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+              <div>
+                <h2>Why T&T Serenity Care</h2>
+                <ul className="list">
+                  <li>Compassion first — people, not checklists.</li>
+                  <li>Skilled, RN-led team with reliable, on-time support.</li>
+                  <li>Personalized plans that adapt as needs change.</li>
+                  <li>Over 25 years of combined nursing experience.</li>
+                </ul>
+                <div style={{ marginTop: '.75rem', display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
+                  <span className="pill">Licensed & Insured</span>
+                  <span className="pill">Background-checked Staff</span>
+                </div>
+              </div>
+              <div className="glass" style={{ padding: '1rem' }}>
+                <div className="card-title">Leadership</div>
+                <p style={{ margin: '.5rem 0 0' }}><strong>Teresia Kirumba, RN BSN</strong> — Co‑Founder</p>
+                <p style={{ margin: '.25rem 0 0' }}><strong>Teresia Kimani, RN</strong> — Co‑Founder</p>
+                <p style={{ margin: '.75rem 0 0', opacity: .9 }}>“We created T&T Serenity Care so that each resident feels respected, supported, and at home.”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    requestAnimationFrame(frame);
-  }
+      {/* WHO WE SERVE / SCOPE */}
+      <section id="scope" className="section">
+        <div className="container">
+          <div className="glass" style={{ padding: 'clamp(2rem,4vw,2.5rem)' }}>
+            <h2>Who We Serve</h2>
+            <p className="subtitle">Licensed support for a wide range of developmental, medical, and physical needs.</p>
+            <div className="grid grid-cols-3 grid-cols-1" style={{ marginTop: '1rem' }}>
+              {[
+                'Intellectual Disabilities','Autism Spectrum Disorders','Cerebral Palsy','Spina Bifida','Prader‑Willi Syndrome','Hearing Impairments','Dual Diagnosis (ID + MI)','Visual Impairments','Mobility Impairments','Epilepsy','Diabetes','Chronic Medical Conditions'
+              ].map((label, i) => (
+                <div key={i} className="glass hover-float" style={{ padding: '.8rem' }}><strong>{label}</strong></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (media.matches) {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = Math.floor(rect.width * DPR);
-    canvas.height = Math.floor(rect.height * DPR);
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-    const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
-    g.addColorStop(0,"#14b8a6");
-    g.addColorStop(0.5,"#6366f1");
-    g.addColorStop(1,"#d946ef");
-    ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
-  } else { frame(); }
-})();
-</script>
-</body>
-</html>
+      {/* CONTACT */}
+      <section id="contact" className="section">
+        <div className="container">
+          <div className="glass" style={{ padding: 'clamp(2rem,4vw,2.5rem)' }}>
+            <h2>Let’s talk</h2>
+            <p className="subtitle">Whether you’re exploring options or ready to begin, we’re here to help.</p>
+            <div className="contact-grid" style={{ marginTop: '1rem' }}>
+              <div className="glass" style={{ padding: '1rem' }}>
+                <div className="card-title">Contact Details</div>
+                <ul className="list">
+                  <li><strong>Email:</strong> <a href="mailto:info@tntserenitycare.com">info@tntserenitycare.com</a></li>
+                  <li><strong>Main:</strong> <a href="tel:+14077032787">(407) 703‑2787</a></li>
+                  <li><strong>Direct — Teresia Kirumba:</strong> <a href="tel:+17814608856">(781) 460‑8856</a></li>
+                  <li><strong>Direct — Teresia Kimani:</strong> <a href="tel:+19788358597">(978) 835‑8597</a></li>
+                  <li><strong>Address:</strong> 241 Caldwell St, Apopka, FL 32712</li>
+                </ul>
+              </div>
+              <form className="glass" style={{ padding: '1rem' }} onSubmit={(e)=>{e.preventDefault(); alert('Thanks! We will be in touch.');}}>
+                <div className="card-title">Send a message</div>
+                <label className="block">Full name<br/>
+                  <input required style={{ width: '100%', padding: '.75rem', marginTop: '.25rem', borderRadius: 12, border: '1px solid rgba(255,255,255,.5)', background: 'rgba(255,255,255,.6)' }} />
+                </label>
+                <label className="block" style={{ display: 'block', marginTop: '.75rem' }}>Email or phone<br/>
+                  <input required style={{ width: '100%', padding: '.75rem', marginTop: '.25rem', borderRadius: 12, border: '1px solid rgba(255,255,255,.5)', background: 'rgba(255,255,255,.6)' }} />
+                </label>
+                <label className="block" style={{ display: 'block', marginTop: '.75rem' }}>How can we help?<br/>
+                  <textarea rows={4} required style={{ width: '100%', padding: '.75rem', marginTop: '.25rem', borderRadius: 12, border: '1px solid rgba(255,255,255,.5)', background: 'rgba(255,255,255,.6)' }} />
+                </label>
+                <button type="submit" className="btn btn-primary" style={{ marginTop: '.75rem' }}>Send message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="glass" style={{ padding: '1rem 1.25rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.75rem' }}>
+              <div>
+                <div style={{ fontWeight: 700 }}>T&T Serenity Care</div>
+                <div style={{ opacity: .8 }}>© {new Date().getFullYear()} T&T Serenity Care. All rights reserved.</div>
+              </div>
+              <nav style={{ opacity: .9, display: 'flex', gap: '1rem' }}>
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
+}
