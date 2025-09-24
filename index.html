@@ -81,6 +81,22 @@
   .founder-cap span{ font-size:.9rem; opacity:.85 }
   @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
   @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; } }
+  /* Founders responsive gallery */
+  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+  .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
+  .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
+  .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
+  .founder-card:hover .founder-photo{ transform: scale(1.03); }
+  .founder-cap{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; flex-direction:column; gap:2px; padding:.45rem .6rem; border-radius:12px; background:rgba(255,255,255,.65); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border:1px solid rgba(255,255,255,.5); }
+  .founder-cap span{ font-size:.9rem; opacity:.85 }
+  @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
+  @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; }
+  }
+  /* Careers layout */
+  .jobs-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .job-card .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0; }
+  .badge{ font-size:.78rem; padding:.25rem .55rem; border-radius:999px; border:1px solid rgba(0,0,0,.08); background: rgba(255,255,255,.6); }
+  .apply-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 </style>
 </head>
 <body>
@@ -93,6 +109,7 @@
         <a href="#services">Services</a>
         <a href="#why">Why Us</a>
         <a href="#scope">Who We Serve</a>
+        <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="mobile-toggle" id="menuBtn" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
@@ -111,6 +128,7 @@
         <a class="link" href="#services">Services</a>
         <a class="link" href="#why">Why Us</a>
         <a class="link" href="#scope">Who We Serve</a>
+        <a class="link" href="#careers">Careers</a>
         <a class="link" href="#contact">Contact</a>
       </div>
     </div>
@@ -236,6 +254,87 @@
     </div>
   </section>
 
+  <!-- CAREERS -->
+  <section id="careers" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Careers</h2>
+        <p class="subtitle">We’re hiring licensed, compassionate caregivers. CNA licensure is welcomed (and preferred for many roles). Applicants must meet or exceed the minimum **Florida APD** requirements for direct‑care staff working in a licensed group home, including required training and screenings. Requirements can vary by role and may be updated by APD.</p>
+
+        <div class="jobs-grid" style="margin-top:1rem">
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">Direct Support Professional (DSP) / Group Home Caregiver</div>
+            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Support adults with developmental disabilities in daily living skills and community inclusion.</li>
+              <li>Follow person‑centered plans and document services accurately.</li>
+              <li>Coordinate activities, appointments, and transportation as needed.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Meet APD’s direct‑care staff standards (e.g., required preservice/core trainings, Level 2 background screening, CPR/First Aid). CNA a plus.</p>
+          </article>
+
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">Certified Nursing Assistant (CNA)</div>
+            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Provide personal care, observation, and documentation in a home‑like setting.</li>
+              <li>Assist with ambulation, hygiene, nutrition, and activities as appropriate.</li>
+              <li>Collaborate with RNs and the leadership team on person‑centered goals.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida CNA; current CPR/First Aid; Level 2 background screening; APD trainings as applicable (e.g., assistance with self‑administration of medication).</p>
+          </article>
+
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">LPN / RN (PRN or Part‑time)</div>
+            <div class="meta"><span class="badge">PRN / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Clinical oversight, care planning, and coordination with providers.</li>
+              <li>Staff coaching and quality assurance for documentation and protocols.</li>
+              <li>Medication oversight consistent with APD and nursing standards.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida nursing license; current CPR/First Aid; Level 2 background screening; role‑specific APD training.</p>
+          </article>
+        </div>
+
+        <div class="glass" style="padding:1rem; margin-top:1rem">
+          <div class="card-title">Quick apply</div>
+          <form id="careersForm" class="apply-grid" novalidate>
+            <label>Full name<br/>
+              <input id="job-name" name="name" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Email<br/>
+              <input id="job-email" type="email" name="email" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Phone<br/>
+              <input id="job-phone" name="phone" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Role<br/>
+              <select id="job-role" name="role" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)">
+                <option>Direct Support Professional (DSP)</option>
+                <option>Certified Nursing Assistant (CNA)</option>
+                <option>LPN</option>
+                <option>RN</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Resume / profile link<br/>
+              <input id="job-link" name="link" placeholder="URL to resume, LinkedIn, Indeed, etc." style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label style="grid-column:1/-1">Message<br/>
+              <textarea id="job-message" name="message" rows="4" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)" placeholder="Tell us briefly about your experience and availability…"></textarea>
+            </label>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"/>
+            <div style="grid-column:1/-1; display:flex; gap:.5rem; align-items:center; justify-content:flex-start">
+              <button id="applyBtn" class="btn btn-primary" type="submit">Submit application</button>
+              <span id="applyStatus" style="font-size:.9rem; opacity:.9"></span>
+            </div>
+            <p style="grid-column:1/-1; font-size:.85rem; opacity:.8; margin:0">Note: APD rules can change. Final hiring requirements follow current APD guidance and the needs of each role.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
@@ -294,6 +393,53 @@
   <!-- JSON-LD for SEO -->
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"T&T Serenity Care","email":"info@tntserenitycare.com","telephone":"+1-407-703-2787","address":{"@type":"PostalAddress","streetAddress":"241 Caldwell St","addressLocality":"Apopka","addressRegion":"FL","postalCode":"32712","addressCountry":"US"},"areaServed":"Central Florida","url":"https://tntserenitycare.com"}
+    // Careers form submission (mailto fallback; optional backend)
+  (function(){
+    const form = document.getElementById('careersForm');
+    if(!form) return;
+    const btn = document.getElementById('applyBtn');
+    const status = document.getElementById('applyStatus');
+    const TO = 'info+careers@tntserenitycare.com';
+    const ENDPOINT = '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const trap = form.querySelector('[name="_gotcha"]');
+      if (trap && trap.value) return;
+      const name = (document.getElementById('job-name').value||'').trim();
+      const email = (document.getElementById('job-email').value||'').trim();
+      const phone = (document.getElementById('job-phone').value||'').trim();
+      const role = (document.getElementById('job-role').value||'').trim();
+      const link = (document.getElementById('job-link').value||'').trim();
+      const msg = (document.getElementById('job-message').value||'').trim();
+      if(!name || !email){ status.textContent='Please include your name and email.'; status.style.color='#b91c1c'; return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try{
+        if(ENDPOINT){
+          const payload = { name, email, phone, role, link, message: msg, _subject: `Application: ${role} — ${name}` };
+          const res = await fetch(ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body: JSON.stringify(payload) });
+          if(!res.ok) throw new Error('Network');
+          status.textContent='Thanks! Your application has been sent.'; status.style.color='#166534'; form.reset();
+        } else {
+          const subject = `Application: ${role} — ${name}`;
+          const body = `Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Role: ${role}
+Resume/Link: ${link}
+
+Message:
+${msg}`;
+          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          status.textContent='Opening your email app to send…'; status.style.color='#166534';
+        }
+      } catch(err){
+        status.textContent='Sorry, something went wrong. Please try again.'; status.style.color='#b91c1c';
+      } finally {
+        btn.disabled=false; btn.textContent='Submit application';
+      }
+    });
+  })();
   </script>
 
   <!-- Footer year + Animated gradient orbs on canvas + Mobile menu JS -->
