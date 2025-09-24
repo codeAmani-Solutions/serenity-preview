@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>T&T Serenity Care — One‑Page (HTML Parity)</title>
+<title>T&T Serenity Care — One-Page (HTML Parity)</title>
 <style>
   :root{
     --glass-bg-light: rgba(255,255,255,0.76);
@@ -46,7 +46,11 @@
   .spacer{ height: 56px; }
   h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: .75rem 0 0 }
   h2{ font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 }
-.bg-canvas { opacity: 0.35; }
+  .bg-canvas { opacity: 0.35; }
+
+  /* smooth in-page scrolling + header offset */
+  html { scroll-behavior: smooth; }
+  section { scroll-margin-top: 72px; } /* match header height */
 </style>
 </head>
 <body>
@@ -141,8 +145,8 @@
           </div>
           <div class="glass" style="padding:1rem">
             <div class="card-title">Leadership</div>
-            <p style="margin:.5rem 0 0"><strong>Teresia Kirumba, RN BSN</strong> — Co‑Founder</p>
-            <p style="margin:.25rem 0 0"><strong>Teresia Kimani, RN</strong> — Co‑Founder</p>
+            <p style="margin:.5rem 0 0"><strong>Teresia Kirumba, RN BSN</strong> — Co-Founder</p>
+            <p style="margin:.25rem 0 0"><strong>Teresia Kimani, RN</strong> — Co-Founder</p>
             <p style="margin:.75rem 0 0; opacity:.9">“We created T&T Serenity Care so that each resident feels respected, supported, and at home.”</p>
           </div>
         </div>
@@ -161,7 +165,7 @@
           <div class="glass hover-float" style="padding:.8rem"><strong>Autism Spectrum Disorders</strong></div>
           <div class="glass hover-float" style="padding:.8rem"><strong>Cerebral Palsy</strong></div>
           <div class="glass hover-float" style="padding:.8rem"><strong>Spina Bifida</strong></div>
-          <div class="glass hover-float" style="padding:.8rem"><strong>Prader‑Willi Syndrome</strong></div>
+          <div class="glass hover-float" style="padding:.8rem"><strong>Prader-Willi Syndrome</strong></div>
           <div class="glass hover-float" style="padding:.8rem"><strong>Hearing Impairments</strong></div>
           <div class="glass hover-float" style="padding:.8rem"><strong>Dual Diagnosis (ID + MI)</strong></div>
           <div class="glass hover-float" style="padding:.8rem"><strong>Visual Impairments</strong></div>
@@ -185,9 +189,9 @@
             <div class="card-title">Contact Details</div>
             <ul class="list">
               <li><strong>Email:</strong> <a href="mailto:info@tntserenitycare.com">info@tntserenitycare.com</a></li>
-              <li><strong>Main:</strong> <a href="tel:+14077032787">(407) 703‑2787</a></li>
-              <li><strong>Direct — Teresia Kirumba:</strong> <a href="tel:+17814608856">(781) 460‑8856</a></li>
-              <li><strong>Direct — Teresia Kimani:</strong> <a href="tel:+19788358597">(978) 835‑8597</a></li>
+              <li><strong>Main:</strong> <a href="tel:+14077032787">(407) 703-2787</a></li>
+              <li><strong>Direct — Teresia Kirumba:</strong> <a href="tel:+17814608856">(781) 460-8856</a></li>
+              <li><strong>Direct — Teresia Kimani:</strong> <a href="tel:+19788358597">(978) 835-8597</a></li>
               <li><strong>Address:</strong> 241 Caldwell St, Apopka, FL 32712</li>
             </ul>
           </div>
