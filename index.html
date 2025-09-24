@@ -71,6 +71,16 @@
   .mobile-panel .sheet{ border-radius: 16px; overflow:hidden; }
   .mobile-panel .link{ display:block; padding:14px 16px; text-decoration:none; color:inherit; border-bottom:1px solid rgba(0,0,0,0.06); background: var(--glass-bg-light); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
   .mobile-panel .link:last-child{ border-bottom:none; }
+  /* Founders responsive gallery */
+  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+  .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
+  .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
+  .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
+  .founder-card:hover .founder-photo{ transform: scale(1.03); }
+  .founder-cap{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; flex-direction:column; gap:2px; padding:.45rem .6rem; border-radius:12px; background:rgba(255,255,255,.65); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border:1px solid rgba(255,255,255,.5); }
+  .founder-cap span{ font-size:.9rem; opacity:.85 }
+  @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
+  @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; } }
 </style>
 </head>
 <body>
@@ -180,6 +190,25 @@
               <span class="pill">Background-checked Staff</span>
             </div>
           </div>
+          <div class="glass" style="padding:1rem">
+            <div class="card-title">Leadership</div>
+            <p style="margin:.5rem 0 0"><strong>Teresia Kirumba, RN BSN</strong> — Co‑Founder</p>
+            <p style="margin:.25rem 0 0"><strong>Teresia Kimani, RN</strong> — Co‑Founder</p>
+            <p style="margin:.75rem 0 0; opacity:.9">“We created T&T Serenity Care so that each resident feels respected, supported, and at home.”</p>
+          </div>
+        </div>
+        <!-- Founders responsive gallery (images should be uploaded to ./assets/) -->
+        <div class="founders-grid" style="margin-top:1rem">
+          <figure class="founder-card glass hover-float">
+            <img src="./assets/teresia-kirumba.jpg" alt="Teresia Kirumba, RN BSN — Co‑Founder" class="founder-photo" loading="lazy" decoding="async"/>
+            <figcaption class="founder-cap"><strong>Teresia Kirumba, RN BSN</strong><span>Co‑Founder</span></figcaption>
+          </figure>
+          <figure class="founder-card glass hover-float">
+            <img src="./assets/teresia-kimani.jpg" alt="Teresia Kimani, RN — Co‑Founder" class="founder-photo" loading="lazy" decoding="async"/>
+            <figcaption class="founder-cap"><strong>Teresia Kimani, RN</strong><span>Co‑Founder</span></figcaption>
+          </figure>
+        </div>
+      </div>
           <div class="glass" style="padding:1rem">
             <div class="card-title">Leadership</div>
             <p style="margin:.5rem 0 0"><strong>Teresia Kirumba, RN BSN</strong> — Co‑Founder</p>
