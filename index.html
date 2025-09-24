@@ -391,9 +391,120 @@
   </footer>
 
   <!-- JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"T&T Serenity Care","email":"info@tntserenitycare.com","telephone":"+1-407-703-2787","address":{"@type":"PostalAddress","streetAddress":"241 Caldwell St","addressLocality":"Apopka","addressRegion":"FL","postalCode":"32712","addressCountry":"US"},"areaServed":"Central Florida","url":"https://tntserenitycare.com"}
-    // Careers form submission (mailto fallback; optional backend)
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"T&T Serenity Care",
+  "email":"info@tntserenitycare.com",
+  "telephone":"+1-407-703-2787",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"241 Caldwell St",
+    "addressLocality":"Apopka",
+    "addressRegion":"FL",
+    "postalCode":"32712",
+    "addressCountry":"US"
+  },
+  "areaServed":"Central Florida",
+  "url":"https://tntserenitycare.com"
+}
+</script>
+
+<!-- JobPosting JSON-LD for Google for Jobs -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"Direct Support Professional (DSP) / Group Home Caregiver",
+  "description":"Support adults with developmental disabilities in a licensed group home. Deliver person-centered daily living support, community inclusion, documentation and coordination. Minimum: meet Florida APD direct-care staff standards (preservice/core trainings), Level 2 background screening, CPR/First Aid. CNA preferred.",
+  "datePosted":"2025-09-24",
+  "validThrough":"2026-03-31",
+  "employmentType":["FULL_TIME","PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"31-1122"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"Certified Nursing Assistant (CNA)",
+  "description":"Provide personal care, observation and documentation in a home-like setting. Assist with ambulation, hygiene, nutrition and activities; collaborate with RNs and leadership. Minimum: active Florida CNA, CPR/First Aid, Level 2 background screening, and APD-required trainings (e.g., assistance with self-administration of medication).",
+  "datePosted":"2025-09-24",
+  "validThrough":"2026-03-31",
+  "employmentType":["FULL_TIME","PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"31-1131"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"LPN / RN (PRN or Part-time)",
+  "description":"Provide clinical oversight, care planning and coordination with providers; coach staff on documentation and protocols; medication oversight per APD and nursing standards. Minimum: active Florida nursing license (LPN or RN), CPR/First Aid, Level 2 background screening, role-specific APD trainings.",
+  "datePosted":"2025-09-24",
+  "validThrough":"2026-03-31",
+  "employmentType":["PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"29-2061, 29-1141"
+}
+</script>
+
+<!-- Careers form submission (separate script) -->
+<script>
   (function(){
     const form = document.getElementById('careersForm');
     if(!form) return;
@@ -440,7 +551,7 @@ ${msg}`;
       }
     });
   })();
-  </script>
+</script>
 
   <!-- Footer year + Animated gradient orbs on canvas + Mobile menu JS -->
   <script>
