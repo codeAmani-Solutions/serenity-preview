@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#ffffff"/>
+<title>T&T Serenity Care — One‑Page (GitHub Pages, Mobile Menu)</title>
+<style>
+  :root{
+    --glass-bg-light: rgba(255,255,255,0.76);
+    --glass-bg-dark: rgba(18,18,18,0.72);
+    --glass-border-light: rgba(255,255,255,0.65);
+    --glass-border-dark: rgba(255,255,255,0.16);
+    --radius: 20px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.15);
+    /* Use RELATIVE path for GH Pages project sites */
+    --bg-image: url('./assets/serenity-bg.jpg');
+    --header-h: 64px; /* adjust if you change header height */
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;color:#0f172a; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.45;}
+  /* Smooth in-page scroll + offset so sections aren't hidden under fixed header */
+  html { scroll-behavior: smooth; }
+  section { scroll-margin-top: calc(var(--header-h) + 8px); }
+
+  .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}  
+  .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .hover-float:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.22); }
+  .section{ padding: clamp(3rem, 6vw, 6rem) 1rem; }
+  .container{ max-width: 1100px; margin: 0 auto; }
+  .pill{ display:inline-block; border:1px solid rgba(255,255,255,.6); padding:.4rem .8rem; border-radius:999px; font-size:.8rem; }
+  .subtitle{ font-size: clamp(1rem, 2.5vw, 1.2rem); opacity:.85 }
+  .grid{ display:grid; gap: clamp(1rem, 2vw, 1.5rem); }
+  @media (min-width: 900px){ .grid-cols-3{ grid-template-columns: repeat(3, 1fr);} }
+  @media (max-width: 899px){ .grid-cols-1{ grid-template-columns: 1fr;} }
+  .btn{ display:inline-block; padding:.85rem 1rem; border-radius:14px; font-weight:600; border:1px solid rgba(255,255,255,.55); text-decoration:none }
+  .btn-primary{ background: linear-gradient(90deg,#14b8a6,#6366f1,#d946ef); color:#fff; }
+  .btn-ghost{ background: rgba(255,255,255,.4); }
+  .card-title{ font-size:1.15rem; font-weight:700; }
+  .list{ margin:.5rem 0 0 1.1rem; }
+  footer{ font-size:.9rem; opacity:.9; }
+  .contact-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+  /* Background layers */
+  .bg-canvas{ position: fixed; inset: 0; z-index: -2; opacity: .35; } 
+  .bg-photo{ position:fixed; inset:0; z-index:-3; background-image: var(--bg-image); background-size:cover; background-position:center; filter:saturate(1.1) brightness(0.9); transform:scale(1.02); }
+  .bg-vignette{ position:fixed; inset:0; z-index:-1; pointer-events:none; background: radial-gradient(120% 80% at 50% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.22) 100%), linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.22)); mix-blend-mode:multiply; }
+
+  /* Fixed top brand bar */
+  header.site-header{ position:fixed; top:0; left:0; right:0; z-index:50; height: var(--header-h); display:flex; align-items:center; 
+    backdrop-filter: blur(12px) saturate(160%); -webkit-backdrop-filter: blur(12px) saturate(160%); background: rgba(255,255,255,0.65); border-bottom:1px solid rgba(255,255,255,0.4); }
+  header.site-header .inner{ max-width:1100px; margin:0 auto; padding: 0 1rem; width:100%; display:flex; align-items:center; justify-content:space-between; gap:.5rem }
+  header.site-header .brand{ font-weight:800; letter-spacing:.02em; }
+  header.site-header nav a{ margin-left:1rem; text-decoration:none; color:inherit; opacity:.85 }
+  .spacer{ height: var(--header-h); }
+  h1{ font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; margin: .75rem 0 0 }
+  h2{ font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 }
+
+  /* Mobile navigation */
+  .mobile-toggle{ display:none; align-items:center; justify-content:center; width:40px; height:40px; border-radius:12px; border:1px solid rgba(0,0,0,.08); background: rgba(255,255,255,0.6); }
+  .mobile-toggle svg{ display:block }
+  @media (max-width: 820px){
+    header.site-header nav{ display:none; }
+    .mobile-toggle{ display:flex; }
+    header.site-header .brand{ line-height:1; }
+  }
+  @media (min-width: 821px){ .mobile-panel{ display:none !important; } }
+  .mobile-panel{ position: fixed; top: var(--header-h); left:0; right:0; z-index:49; padding:8px; }
+  .mobile-panel .backdrop{ position: fixed; inset:0; background: rgba(0,0,0,0.25); backdrop-filter: blur(2px); }
+  .mobile-panel .sheet{ border-radius: 16px; overflow:hidden; }
+  .mobile-panel .link{ display:block; padding:14px 16px; text-decoration:none; color:inherit; border-bottom:1px solid rgba(0,0,0,0.06); background: var(--glass-bg-light); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
+  .mobile-panel .link:last-child{ border-bottom:none; }
+  /* Founders responsive gallery */
+  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+  .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
+  .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
+  .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
+  .founder-card:hover .founder-photo{ transform: scale(1.03); }
+  .founder-cap{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; flex-direction:column; gap:2px; padding:.45rem .6rem; border-radius:12px; background:rgba(255,255,255,.65); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border:1px solid rgba(255,255,255,.5); }
+  .founder-cap span{ font-size:.9rem; opacity:.85 }
+  @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
+  @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; } }
+  /* Founders responsive gallery */
+  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+  .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
+  .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
+  .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
+  .founder-card:hover .founder-photo{ transform: scale(1.03); }
+  .founder-cap{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; flex-direction:column; gap:2px; padding:.45rem .6rem; border-radius:12px; background:rgba(255,255,255,.65); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border:1px solid rgba(255,255,255,.5); }
+  .founder-cap span{ font-size:.9rem; opacity:.85 }
+  @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
+  @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; }
+  }
+  /* Careers layout */
+  .jobs-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .job-card .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0; }
+  .badge{ font-size:.78rem; padding:.25rem .55rem; border-radius:999px; border:1px solid rgba(0,0,0,.08); background: rgba(255,255,255,.6); }
+  .apply-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+</style>
+</head>
+<body>
+@@ -93,6 +109,7 @@
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#scope">Who We Serve</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="mobile-toggle" id="menuBtn" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
+@@ -111,6 +128,7 @@
+        <a class="link" href="#services">Services</a>
+        <a class="link" href="#why">Why Us</a>
+        <a class="link" href="#scope">Who We Serve</a>
+        <a class="link" href="#careers">Careers</a>
+        <a class="link" href="#contact">Contact</a>
+      </div>
+    </div>
+@@ -236,6 +254,87 @@
+    </div>
+  </section>
+
+  <!-- CAREERS -->
+  <section id="careers" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Careers</h2>
+        <p class="subtitle">We’re hiring licensed, compassionate caregivers. CNA licensure is welcomed (and preferred for many roles). Applicants must meet or exceed the minimum **Florida APD** requirements for direct‑care staff working in a licensed group home, including required training and screenings. Requirements can vary by role and may be updated by APD.</p>
+
+        <div class="jobs-grid" style="margin-top:1rem">
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">Direct Support Professional (DSP) / Group Home Caregiver</div>
+            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Support adults with developmental disabilities in daily living skills and community inclusion.</li>
+              <li>Follow person‑centered plans and document services accurately.</li>
+              <li>Coordinate activities, appointments, and transportation as needed.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Meet APD’s direct‑care staff standards (e.g., required preservice/core trainings, Level 2 background screening, CPR/First Aid). CNA a plus.</p>
+          </article>
+
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">Certified Nursing Assistant (CNA)</div>
+            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Provide personal care, observation, and documentation in a home‑like setting.</li>
+              <li>Assist with ambulation, hygiene, nutrition, and activities as appropriate.</li>
+              <li>Collaborate with RNs and the leadership team on person‑centered goals.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida CNA; current CPR/First Aid; Level 2 background screening; APD trainings as applicable (e.g., assistance with self‑administration of medication).</p>
+          </article>
+
+          <article class="glass job-card hover-float" style="padding:1rem">
+            <div class="card-title">LPN / RN (PRN or Part‑time)</div>
+            <div class="meta"><span class="badge">PRN / Part‑time</span><span class="badge">Apopka, FL</span></div>
+            <ul class="list">
+              <li>Clinical oversight, care planning, and coordination with providers.</li>
+              <li>Staff coaching and quality assurance for documentation and protocols.</li>
+              <li>Medication oversight consistent with APD and nursing standards.</li>
+            </ul>
+            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida nursing license; current CPR/First Aid; Level 2 background screening; role‑specific APD training.</p>
+          </article>
+        </div>
+
+        <div class="glass" style="padding:1rem; margin-top:1rem">
+          <div class="card-title">Quick apply</div>
+          <form id="careersForm" class="apply-grid" novalidate>
+            <label>Full name<br/>
+              <input id="job-name" name="name" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Email<br/>
+              <input id="job-email" type="email" name="email" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Phone<br/>
+              <input id="job-phone" name="phone" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label>Role<br/>
+              <select id="job-role" name="role" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)">
+                <option>Direct Support Professional (DSP)</option>
+                <option>Certified Nursing Assistant (CNA)</option>
+                <option>LPN</option>
+                <option>RN</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Resume / profile link<br/>
+              <input id="job-link" name="link" placeholder="URL to resume, LinkedIn, Indeed, etc." style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
+            </label>
+            <label style="grid-column:1/-1">Message<br/>
+              <textarea id="job-message" name="message" rows="4" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)" placeholder="Tell us briefly about your experience and availability…"></textarea>
+            </label>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"/>
+            <div style="grid-column:1/-1; display:flex; gap:.5rem; align-items:center; justify-content:flex-start">
+              <button id="applyBtn" class="btn btn-primary" type="submit">Submit application</button>
+              <span id="applyStatus" style="font-size:.9rem; opacity:.9"></span>
+            </div>
+            <p style="grid-column:1/-1; font-size:.85rem; opacity:.8; margin:0">Note: APD rules can change. Final hiring requirements follow current APD guidance and the needs of each role.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+@@ -294,115 +393,162 @@
+  <!-- JSON-LD for SEO -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"T&T Serenity Care","email":"info@tntserenitycare.com","telephone":"+1-407-703-2787","address":{"@type":"PostalAddress","streetAddress":"241 Caldwell St","addressLocality":"Apopka","addressRegion":"FL","postalCode":"32712","addressCountry":"US"},"areaServed":"Central Florida","url":"https://tntserenitycare.com"}
+    // Careers form submission (mailto fallback; optional backend)
+  (function(){
+    const form = document.getElementById('careersForm');
+    if(!form) return;
+    const btn = document.getElementById('applyBtn');
+    const status = document.getElementById('applyStatus');
+    const TO = 'info+careers@tntserenitycare.com';
+    const ENDPOINT = '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const trap = form.querySelector('[name="_gotcha"]');
+      if (trap && trap.value) return;
+      const name = (document.getElementById('job-name').value||'').trim();
+      const email = (document.getElementById('job-email').value||'').trim();
+      const phone = (document.getElementById('job-phone').value||'').trim();
+      const role = (document.getElementById('job-role').value||'').trim();
+      const link = (document.getElementById('job-link').value||'').trim();
+      const msg = (document.getElementById('job-message').value||'').trim();
+      if(!name || !email){ status.textContent='Please include your name and email.'; status.style.color='#b91c1c'; return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try{
+        if(ENDPOINT){
+          const payload = { name, email, phone, role, link, message: msg, _subject: `Application: ${role} — ${name}` };
+          const res = await fetch(ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body: JSON.stringify(payload) });
+          if(!res.ok) throw new Error('Network');
+          status.textContent='Thanks! Your application has been sent.'; status.style.color='#166534'; form.reset();
+        } else {
+          const subject = `Application: ${role} — ${name}`;
+          const body = `Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Role: ${role}
+Resume/Link: ${link}
+
+Message:
+${msg}`;
+          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          status.textContent='Opening your email app to send…'; status.style.color='#166534';
+        }
+      } catch(err){
+        status.textContent='Sorry, something went wrong. Please try again.'; status.style.color='#b91c1c';
+      } finally {
+        btn.disabled=false; btn.textContent='Submit application';
+      }
+    });
+  })();
+  </script>
+
+  <!-- Footer year + Animated gradient orbs on canvas + Mobile menu JS -->
+  <script>
+  // Current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Animated gradient orbs
+  (function(){
+    const canvas = document.getElementById('grad');
+    const ctx = canvas.getContext('2d');
+    const DPR = window.devicePixelRatio || 1;
+    const orbs = Array.from({ length: 7 }).map(() => ({
+      x: Math.random(), y: Math.random(), r: 120 + Math.random()*160,
+      vx: (Math.random()-0.5)*0.0006, vy: (Math.random()-0.5)*0.0006,
+      hue: Math.floor(180 + Math.random()*180), alpha: 0.18 + Math.random()*0.18
+    }));
+    function draw(){
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(rect.width * DPR));
+      canvas.height = Math.max(1, Math.floor(rect.height * DPR));
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      ctx.clearRect(0,0,rect.width,rect.height);
+      const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+      g.addColorStop(0,'#14b8a6'); g.addColorStop(0.5,'#6366f1'); g.addColorStop(1,'#d946ef');
+      ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
+      orbs.forEach(o=>{ o.x+=o.vx; o.y+=o.vy; if(o.x<-0.2||o.x>1.2) o.vx*=-1; if(o.y<-0.2||o.y>1.2) o.vy*=-1; const cx=o.x*rect.width, cy=o.y*rect.height; const rg=ctx.createRadialGradient(cx,cy,0,cx,cy,o.r); rg.addColorStop(0,`hsla(${o.hue},80%,60%,${o.alpha})`); rg.addColorStop(1,`hsla(${(o.hue+60)%360},70%,50%,0)`); ctx.fillStyle=rg; ctx.beginPath(); ctx.arc(cx,cy,o.r,0,Math.PI*2); ctx.fill(); });
+      requestAnimationFrame(draw);
+    }
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(media.matches){
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(rect.width * DPR));
+      canvas.height = Math.max(1, Math.floor(rect.height * DPR));
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+      g.addColorStop(0,'#14b8a6'); g.addColorStop(0.5,'#6366f1'); g.addColorStop(1,'#d946ef');
+      ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
+    } else { draw(); }
+  })();
+
+  // Mobile menu logic (vanilla JS)
+  (function(){
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('mobile-nav');
+    const backdrop = document.getElementById('menuBackdrop');
+
+    const open = () => {
+      panel.hidden = false; btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden';
+    };
+    const close = () => {
+      panel.hidden = true; btn.setAttribute('aria-expanded','false'); document.body.style.overflow='';
+    };
+
+    btn.addEventListener('click', () => (panel.hidden ? open() : close()));
+    backdrop.addEventListener('click', close);
+
+    // Close on ESC
+    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') close(); });
+    // Close when clicking a link inside the sheet
+    panel.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) close();
+    });
+    // If resized to desktop, ensure menu is closed
+    window.addEventListener('resize', () => { if (window.innerWidth >= 821) close(); });
+  })();
+    // Contact form submission (uses mailto fallback; optionally set a backend endpoint)
+  (function(){
+    const form = document.getElementById('contactForm');
+    if(!form) return;
+    const btn = document.getElementById('sendBtn');
+    const status = document.getElementById('formStatus');
+    const TO = 'info+wesbiteform@tntserenitycare.com'; // destination
+    const ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxx' — leave empty to use mailto fallback
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const trap = form.querySelector('[name="_gotcha"]');
+      if (trap && trap.value) return; // bot detected
+      const name = (document.getElementById('cf-name').value||'').trim();
+      const contact = (document.getElementById('cf-contact').value||'').trim();
+      const message = (document.getElementById('cf-message').value||'').trim();
+      if(!name || !contact || !message){ status.textContent='Please fill in all fields.'; status.style.color='#b91c1c'; return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        if (ENDPOINT) {
+          const payload = { name, contact, message, _subject:`Website form (T&T) — ${name}`, _to: TO };
+          const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Accept':'application/json','Content-Type':'application/json' }, body: JSON.stringify(payload) });
+          if(!res.ok) throw new Error('Network error');
+          status.textContent = 'Thanks! Your message was sent.'; status.style.color = '#166534';
+          form.reset();
+        } else {
+          const subject = `Website form (T&T) — ${name}`;
+          const body = `Name: ${name}
+Contact: ${contact}
+
+Message:
+${message}`;
+          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          status.textContent = 'Opening your email app to send…'; status.style.color='#166534';
+        }
+      } catch(err){
+        status.textContent = 'Sorry, something went wrong. Please try again in a moment.'; status.style.color='#b91c1c';
+      } finally {
+        btn.disabled = false; btn.textContent = 'Send message';
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
