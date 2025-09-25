@@ -24,7 +24,7 @@
   html { scroll-behavior: smooth; }
   section { scroll-margin-top: calc(var(--header-h) + 8px); }
 
-  .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}  
+  .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}
   .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
   .hover-float:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.22); }
   .section{ padding: clamp(3rem, 6vw, 6rem) 1rem; }
@@ -42,13 +42,31 @@
   footer{ font-size:.9rem; opacity:.9; }
   .contact-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
+  /* Contact cards with credentials */
+  .contact-cards{ display:grid; gap:.8rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .contact-card{ padding:.85rem; border-radius:14px; border:1px solid rgba(0,0,0,.06); background: rgba(255,255,255,.6); }
+  .contact-card header{ font-weight:700; margin-bottom:.35rem; }
+  .contact-card ul{ list-style:none; padding-left:0; margin:.4rem 0 0; }
+  .contact-card li{ display:flex; align-items:center; gap:.5rem; margin:.3rem 0; }
+  .contact-card .note{ opacity:.7; font-size:.85rem; }
+  .address-block{ margin-top:.75rem; }
+  .map-chooser{ display:flex; gap:.5rem; margin-top:.5rem; }
+  .btn.small{ padding:.5rem .7rem; border-radius:10px; font-size:.9rem; }
+
+  /* Role radios for contact form (WCAG) */
+  .choices{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+  .choice-radio{ position:absolute; opacity:0; pointer-events:none; }
+  .choice-label{ display:inline-flex; align-items:center; gap:.35rem; padding:.5rem .8rem; border-radius:999px; border:1px solid rgba(0,0,0,.08); background:rgba(255,255,255,.6); cursor:pointer; user-select:none; }
+  .choice-radio:checked + .choice-label{ background: linear-gradient(90deg,#14b8a6,#6366f1,#d946ef); color:#fff; border-color: transparent; box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+  .choice-radio:focus-visible + .choice-label{ outline:2px solid #a78bfa; outline-offset:2px; }
+
   /* Background layers */
-  .bg-canvas{ position: fixed; inset: 0; z-index: -2; opacity: .35; } 
+  .bg-canvas{ position: fixed; inset: 0; z-index: -2; opacity: .35; }
   .bg-photo{ position:fixed; inset:0; z-index:-3; background-image: var(--bg-image); background-size:cover; background-position:center; filter:saturate(1.1) brightness(0.9); transform:scale(1.02); }
   .bg-vignette{ position:fixed; inset:0; z-index:-1; pointer-events:none; background: radial-gradient(120% 80% at 50% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.22) 100%), linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.22)); mix-blend-mode:multiply; }
 
   /* Fixed top brand bar */
-  header.site-header{ position:fixed; top:0; left:0; right:0; z-index:50; height: var(--header-h); display:flex; align-items:center; 
+  header.site-header{ position:fixed; top:0; left:0; right:0; z-index:50; height: var(--header-h); display:flex; align-items:center;
     backdrop-filter: blur(12px) saturate(160%); -webkit-backdrop-filter: blur(12px) saturate(160%); background: rgba(255,255,255,0.65); border-bottom:1px solid rgba(255,255,255,0.4); }
   header.site-header .inner{ max-width:1100px; margin:0 auto; padding: 0 1rem; width:100%; display:flex; align-items:center; justify-content:space-between; gap:.5rem }
   header.site-header .brand{ font-weight:800; letter-spacing:.02em; }
@@ -71,6 +89,7 @@
   .mobile-panel .sheet{ border-radius: 16px; overflow:hidden; }
   .mobile-panel .link{ display:block; padding:14px 16px; text-decoration:none; color:inherit; border-bottom:1px solid rgba(0,0,0,0.06); background: var(--glass-bg-light); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
   .mobile-panel .link:last-child{ border-bottom:none; }
+  
   /* Founders responsive gallery */
   .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
   .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
@@ -81,18 +100,8 @@
   .founder-cap span{ font-size:.9rem; opacity:.85 }
   @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
   @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; } }
-  /* Founders responsive gallery */
-  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
-  .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
-  .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
-  .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
-  .founder-card:hover .founder-photo{ transform: scale(1.03); }
-  .founder-cap{ position:absolute; left:12px; right:12px; bottom:12px; display:flex; flex-direction:column; gap:2px; padding:.45rem .6rem; border-radius:12px; background:rgba(255,255,255,.65); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border:1px solid rgba(255,255,255,.5); }
-  .founder-cap span{ font-size:.9rem; opacity:.85 }
-  @media (min-width: 1024px){ .founder-photo{ aspect-ratio: 4/5; } }
-  @media (max-width: 480px){ .founder-photo{ aspect-ratio: 1/1.2; }
-  }
-  /* Careers layout */
+
+  /* Careers layout (This section was missing from the original file) */
   .jobs-grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .job-card .meta{ display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0; }
   .badge{ font-size:.78rem; padding:.25rem .55rem; border-radius:999px; border:1px solid rgba(0,0,0,.08); background: rgba(255,255,255,.6); }
@@ -100,7 +109,12 @@
 </style>
 </head>
 <body>
-@@ -93,6 +109,7 @@
+  <!-- Fixed Header -->
+  <header class="site-header">
+    <div class="inner">
+      <div class="brand">T&T SERENITY CARE</div>
+      <nav aria-label="Primary">
+        <a href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#why">Why Us</a>
         <a href="#scope">Who We Serve</a>
@@ -108,7 +122,18 @@
         <a href="#contact">Contact</a>
       </nav>
       <button class="mobile-toggle" id="menuBtn" aria-label="Open menu" aria-controls="mobile-nav" aria-expanded="false">
-@@ -111,6 +128,7 @@
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+  <div class="spacer" aria-hidden="true"></div>
+
+  <!-- Mobile sheet (hidden on desktop) -->
+  <div class="mobile-panel" id="mobile-nav" hidden>
+    <div class="backdrop" id="menuBackdrop"></div>
+    <div class="container">
+      <div class="sheet glass">
+        <a class="link" href="#home">Home</a>
         <a class="link" href="#services">Services</a>
         <a class="link" href="#why">Why Us</a>
         <a class="link" href="#scope">Who We Serve</a>
@@ -116,7 +141,115 @@
         <a class="link" href="#contact">Contact</a>
       </div>
     </div>
-@@ -236,6 +254,87 @@
+  </div>
+
+  <!-- Background Layers -->
+  <div class="bg-photo" style="background-image:url('./assets/serenity-bg.jpg')" aria-hidden="true"></div>
+  <canvas id="grad" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <section id="home" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,3rem)">
+        <div class="pill">APD-Licensed Group Home — Central Florida</div>
+        <h1>Care that meets you where you are.</h1>
+        <p class="subtitle">Personalized, compassionate support delivered with dignity, reliability, and heart. Empowering lives through compassionate care.</p>
+        <div style="margin-top:1rem; display:flex; gap:.75rem; flex-wrap:wrap">
+          <a href="#contact" class="btn btn-primary">Contact Us</a>
+          <a href="#services" class="btn btn-ghost">Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Our Services</h2>
+        <p class="subtitle">Clear, personalized support plans that fit real lives.</p>
+        <div class="grid grid-cols-3 grid-cols-1" style="margin-top:1rem">
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">24/7 Care</div>
+            <ul class="list"><li>Round-the-clock support</li><li>On-call nursing oversight</li><li>Crisis response-ready</li></ul>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Personal Supports</div>
+            <ul class="list"><li>Daily living assistance</li><li>Medication reminders</li><li>Light housekeeping</li></ul>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Respite (Under 21)</div>
+            <ul class="list"><li>Short-term coverage</li><li>Family relief</li><li>Safe, RN-led protocols</li></ul>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Life Skills Development I</div>
+            <ul class="list"><li>Community access</li><li>Appointments & activities</li><li>Skill-building</li></ul>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Residential Nursing (RN)</div>
+            <ul class="list"><li>Care planning</li><li>Clinical coordination</li><li>Family updates</li></ul>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Skilled Nursing / Skilled Respite (RN)</div>
+            <ul class="list"><li>Clinical procedures</li><li>Observation & documentation</li><li>Coordination with providers</li></ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US / FOUNDERS -->
+  <section id="why" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Why T&T Serenity Care?</h2>
+        <p class="subtitle">Founded by nurses, driven by a passion for quality of life.</p>
+        <div style="display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top:1.5rem;">
+          
+          <!-- Text content was missing here -->
+          <div> 
+            <p>With over two decades of combined nursing experience in critical care and home health, we saw a need for a higher standard of compassionate, reliable support in our community. T&T Serenity Care was born from a desire to provide not just care, but true partnership.</p>
+            <p>Our approach is simple: we listen, we personalize, and we empower. Every individual deserves to feel safe, respected, and supported in achieving their personal goals. That philosophy guides every decision we make, from our hiring practices to the individualized care plans we develop with our residents and their support coordinators.</p>
+          </div>
+
+          <!-- Founders responsive photo cards -->
+          <div class="founders-grid">
+            <figure class="founder-card glass">
+              <img class="founder-photo" src="./assets/teresia-kirumba.jpg" alt="Teresia Kirumba, RN BSN — Co‑Founder"/>
+              <figcaption class="founder-cap"><strong>Teresia Kirumba, RN BSN</strong><span>Co‑Founder</span></figcaption>
+            </figure>
+            <figure class="founder-card glass">
+              <img class="founder-photo" src="./assets/teresia-kimani.jpg" alt="Teresia Kimani, RN — Co‑Founder"/>
+              <figcaption class="founder-cap"><strong>Teresia Kimani, RN</strong><span>Co‑Founder</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- WHO WE SERVE -->
+  <section id="scope" class="section">
+    <div class="container">
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Who We Serve</h2>
+        <p class="subtitle">Providing dedicated, person-centered support for adults with developmental disabilities across Central Florida under the APD iBudget Waiver.</p>
+        <div class="grid grid-cols-3 grid-cols-1" style="margin-top:1.5rem;">
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Individuals & Families</div>
+            <p style="margin:.5rem 0 0">We partner with individuals seeking a safe, empowering group home environment and families in need of reliable, high-quality respite and personal support services.</p>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Support Coordinators</div>
+            <p style="margin:.5rem 0 0">We are a trusted, responsive partner for Waiver Support Coordinators, ensuring clear communication, timely documentation, and exceptional care for your clients.</p>
+          </article>
+          <article class="glass hover-float" style="padding:1rem">
+            <div class="card-title">Community Partners</div>
+            <p style="margin:.5rem 0 0">We collaborate with healthcare providers, pharmacies, and APD representatives to create a seamless network of support that prioritizes the health and well-being of every resident.</p>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -124,147 +257,422 @@
   <section id="careers" class="section">
     <div class="container">
       <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
-        <h2>Careers</h2>
-        <p class="subtitle">We’re hiring licensed, compassionate caregivers. CNA licensure is welcomed (and preferred for many roles). Applicants must meet or exceed the minimum **Florida APD** requirements for direct‑care staff working in a licensed group home, including required training and screenings. Requirements can vary by role and may be updated by APD.</p>
-
-        <div class="jobs-grid" style="margin-top:1rem">
-          <article class="glass job-card hover-float" style="padding:1rem">
-            <div class="card-title">Direct Support Professional (DSP) / Group Home Caregiver</div>
-            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
-            <ul class="list">
-              <li>Support adults with developmental disabilities in daily living skills and community inclusion.</li>
-              <li>Follow person‑centered plans and document services accurately.</li>
-              <li>Coordinate activities, appointments, and transportation as needed.</li>
-            </ul>
-            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Meet APD’s direct‑care staff standards (e.g., required preservice/core trainings, Level 2 background screening, CPR/First Aid). CNA a plus.</p>
+        <h2>Join Our Team</h2>
+        <p class="subtitle">Make a difference in a supportive, professional environment. We're looking for compassionate individuals to join our mission.</p>
+        <div class="jobs-grid" style="margin-top:1.5rem;">
+          <article class="glass" style="padding:1rem">
+            <div class="card-title">Direct Support Professional (DSP)</div>
+            <div class="meta">
+              <span class="badge">Full-time</span>
+              <span class="badge">Part-time</span>
+            </div>
+            <p style="margin:.5rem 0 0">Support adults with developmental disabilities in a licensed group home. Deliver person-centered daily living support, community inclusion, documentation and coordination.</p>
           </article>
-
-          <article class="glass job-card hover-float" style="padding:1rem">
+          <article class="glass" style="padding:1rem">
             <div class="card-title">Certified Nursing Assistant (CNA)</div>
-            <div class="meta"><span class="badge">Full‑time / Part‑time</span><span class="badge">Apopka, FL</span></div>
-            <ul class="list">
-              <li>Provide personal care, observation, and documentation in a home‑like setting.</li>
-              <li>Assist with ambulation, hygiene, nutrition, and activities as appropriate.</li>
-              <li>Collaborate with RNs and the leadership team on person‑centered goals.</li>
-            </ul>
-            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida CNA; current CPR/First Aid; Level 2 background screening; APD trainings as applicable (e.g., assistance with self‑administration of medication).</p>
+            <div class="meta">
+              <span class="badge">Full-time</span>
+              <span class="badge">Part-time</span>
+            </div>
+            <p style="margin:.5rem 0 0">Provide personal care, observation and documentation in a home-like setting. Assist with ambulation, hygiene, nutrition and activities; collaborate with RNs and leadership.</p>
           </article>
-
-          <article class="glass job-card hover-float" style="padding:1rem">
-            <div class="card-title">LPN / RN (PRN or Part‑time)</div>
-            <div class="meta"><span class="badge">PRN / Part‑time</span><span class="badge">Apopka, FL</span></div>
-            <ul class="list">
-              <li>Clinical oversight, care planning, and coordination with providers.</li>
-              <li>Staff coaching and quality assurance for documentation and protocols.</li>
-              <li>Medication oversight consistent with APD and nursing standards.</li>
-            </ul>
-            <p style="margin:.5rem 0 0; opacity:.9"><strong>Minimum:</strong> Active Florida nursing license; current CPR/First Aid; Level 2 background screening; role‑specific APD training.</p>
+          <article class="glass" style="padding:1rem">
+            <div class="card-title">LPN / RN</div>
+            <div class="meta">
+              <span class="badge">Part-time</span>
+              <span class="badge">PRN</span>
+            </div>
+            <p style="margin:.5rem 0 0">Provide clinical oversight, care planning and coordination with providers; coach staff on documentation and protocols; medication oversight per APD and nursing standards.</p>
           </article>
         </div>
-
-        <div class="glass" style="padding:1rem; margin-top:1rem">
-          <div class="card-title">Quick apply</div>
-          <form id="careersForm" class="apply-grid" novalidate>
-            <label>Full name<br/>
-              <input id="job-name" name="name" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
-            </label>
-            <label>Email<br/>
-              <input id="job-email" type="email" name="email" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
-            </label>
-            <label>Phone<br/>
-              <input id="job-phone" name="phone" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
-            </label>
-            <label>Role<br/>
-              <select id="job-role" name="role" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)">
-                <option>Direct Support Professional (DSP)</option>
-                <option>Certified Nursing Assistant (CNA)</option>
-                <option>LPN</option>
-                <option>RN</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label>Resume / profile link<br/>
-              <input id="job-link" name="link" placeholder="URL to resume, LinkedIn, Indeed, etc." style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)"/>
-            </label>
-            <label style="grid-column:1/-1">Message<br/>
-              <textarea id="job-message" name="message" rows="4" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.7)" placeholder="Tell us briefly about your experience and availability…"></textarea>
-            </label>
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"/>
-            <div style="grid-column:1/-1; display:flex; gap:.5rem; align-items:center; justify-content:flex-start">
-              <button id="applyBtn" class="btn btn-primary" type="submit">Submit application</button>
-              <span id="applyStatus" style="font-size:.9rem; opacity:.9"></span>
-            </div>
-            <p style="grid-column:1/-1; font-size:.85rem; opacity:.8; margin:0">Note: APD rules can change. Final hiring requirements follow current APD guidance and the needs of each role.</p>
-          </form>
+        <div class="glass" style="margin-top:1.5rem; padding:1rem;">
+          <div class="card-title">How to Apply</div>
+          <p style="margin:.5rem 0 0">Ready to make a difference? We invite you to send your information to our hiring team. Please fill out the contact form below and select "Other" to express your interest in a position.</p>
+          <div style="margin-top:1rem;">
+            <a href="#contact" class="btn btn-primary">Apply via Contact Form</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT SECTION -->
   <section id="contact" class="section">
     <div class="container">
-@@ -294,115 +393,162 @@
-  <!-- JSON-LD for SEO -->
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"T&T Serenity Care","email":"info@tntserenitycare.com","telephone":"+1-407-703-2787","address":{"@type":"PostalAddress","streetAddress":"241 Caldwell St","addressLocality":"Apopka","addressRegion":"FL","postalCode":"32712","addressCountry":"US"},"areaServed":"Central Florida","url":"https://tntserenitycare.com"}
-    // Careers form submission (mailto fallback; optional backend)
-  (function(){
-    const form = document.getElementById('careersForm');
-    if(!form) return;
-    const btn = document.getElementById('applyBtn');
-    const status = document.getElementById('applyStatus');
-    const TO = 'info+careers@tntserenitycare.com';
-    const ENDPOINT = '';
+      <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
+        <h2>Get in Touch</h2>
+        <p class="subtitle">We're here to answer your questions. Reach out today for a consultation or to discuss a referral.</p>
+        <div class="contact-grid" style="margin-top:1.5rem;">
+          <div class="glass" style="padding:1rem">
+            <div class="card-title">Contact &amp; Credentials</div>
+            <div class="contact-cards">
+              <article class="contact-card">
+                <header>Teresia Kirumba, RN, BSN</header>
+                <ul>
+                  <li>📱 <a href="tel:+17814608856">(781) 460‑8856</a> <span class="note">cell</span></li>
+                  <li>📱 <a href="tel:+14078019650">(407) 801‑9650</a> <span class="note">alt</span></li>
+                  <li>☎️ <a href="tel:+14077032787">(407) 703‑2787</a> <span class="note">office</span></li>
+                  <li>✉️ <a href="mailto:info+Terry@tntserenitycare.com">info+Terry@tntserenitycare.com</a></li>
+                </ul>
+              </article>
+              <article class="contact-card">
+                <header>Teresia Kimani, RN</header>
+                <ul>
+                  <li>📱 <a href="tel:+19788358897">(978) 835‑8897</a> <span class="note">cell</span></li>
+                  <li>📱 <a href="tel:+14078019650">(407) 801‑9650</a> <span class="note">alt</span></li>
+                  <li>☎️ <a href="tel:+14077032787">(407) 703‑2787</a> <span class="note">office</span></li>
+                  <li>✉️ <a href="mailto:info+Treza@tntserenitycare.com">info+Treza@tntserenitycare.com</a></li>
+                </ul>
+              </article>
+            </div>
+            <div class="address-block">
+              <div>📍 <a href="#" id="mapLink">241 Caldwell St, Apopka, FL 32712</a></div>
+              <div id="mapChooser" class="map-chooser" hidden>
+                <a class="btn btn-ghost small" target="_blank" rel="noopener" href="https://maps.apple.com/?q=241+Caldwell+St,+Apopka,+FL+32712">Open in Apple Maps</a>
+                <a class="btn btn-primary small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=241+Caldwell+St,+Apopka,+FL+32712">Open in Google Maps</a>
+              </div>
+            </div>
+          </div>
+          <form id="contactForm" class="glass" style="padding:1rem" novalidate>
+            <div class="card-title">Send a message</div>
+            <label class="block">Full name<br/>
+              <input id="cf-name" name="name" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+            </label>
+            <label class="block" style="display:block;margin-top:.75rem">Email or phone<br/>
+              <input id="cf-contact" name="contact" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+            </label>
+            <fieldset class="block" style="display:block;margin-top:.75rem;border:0;padding:0">
+              <legend>I am a…</legend>
+              <div class="choices" role="radiogroup" aria-label="Contact type">
+                <input class="choice-radio" type="radio" id="role-sc" name="type" value="Support Coordinator">
+                <label class="choice-label" for="role-sc">Support Coordinator</label>
+                <input class="choice-radio" type="radio" id="role-fac" name="type" value="Facility/Provider">
+                <label class="choice-label" for="role-fac">Facility/Provider</label>
+                <input class="choice-radio" type="radio" id="role-pharm" name="type" value="Pharmacy">
+                <label class="choice-label" for="role-pharm">Pharmacy</label>
+                <input class="choice-radio" type="radio" id="role-ind" name="type" value="Individual/Family">
+                <label class="choice-label" for="role-ind">Individual/Family</label>
+                <input class="choice-radio" type="radio" id="role-apd" name="type" value="APD Representative">
+                <label class="choice-label" for="role-apd">APD Representative</label>
+                <input class="choice-radio" type="radio" id="role-other" name="type" value="Other">
+                <label class="choice-label" for="role-other">Other</label>
+              </div>
+            </fieldset>
 
+            <div id="dyn-org" hidden>
+              <label class="block" style="display:block;margin-top:.75rem">Organization / Agency (optional)<br/>
+                <input id="cf-org" name="org" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+              </label>
+            </div>
+
+            <div id="dyn-person" hidden>
+              <label class="block" style="display:block;margin-top:.75rem">Participant / Individual name (optional)<br/>
+                <input id="cf-person" name="person" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+              </label>
+              <label class="block" style="display:block;margin-top:.75rem">APD Client ID or Case # (optional)<br/>
+                <input id="cf-id" name="apdid" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+              </label>
+            </div>
+
+            <div id="dyn-case" hidden>
+              <label class="block" style="display:block;margin-top:.75rem">Referral / Rx / Case # (optional)<br/>
+                <input id="cf-case" name="case" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+              </label>
+            </div>
+
+            <div id="dyn-other" hidden>
+              <label class="block" style="display:block;margin-top:.75rem">Tell us who you are (optional)<br/>
+                <input id="cf-other" name="other" placeholder="e.g., Guardian, Advocate, Vendor" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
+              </label>
+            </div>
+            <label class="block" style="display:block;margin-top:.75rem">How can we help?<br/>
+              <textarea id="cf-message" name="message" rows="4" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"></textarea>
+            </label>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"/>
+            <button id="sendBtn" type="submit" class="btn btn-primary" style="margin-top:.75rem">Send message</button>
+            <p id="formStatus" style="margin:.5rem 0 0; font-size:.9rem; opacity:.9"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FOOTER -->
+  <footer class="section" style="padding-top:0">
+    <div class="container">
+      <div class="glass" style="padding:1rem 1.25rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+          <div>
+            <div style="font-weight:700">T&T Serenity Care</div>
+            <div style="opacity:.8">© <span id="year"></span> T&T Serenity Care. All rights reserved.</div>
+          </div>
+          <nav style="opacity:.9;display:flex;gap:1rem">
+            <a href="#privacy">Privacy</a>
+            <a href="#terms">Terms</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"T&T Serenity Care",
+  "email":"info@tntserenitycare.com",
+  "telephone":"+1-407-703-2787",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"241 Caldwell St",
+    "addressLocality":"Apopka",
+    "addressRegion":"FL",
+    "postalCode":"32712",
+    "addressCountry":"US"
+  },
+  "areaServed":"Central Florida",
+  "url":"https://tntserenitycare.com"
+}
+</script>
+
+<!-- JobPosting JSON-LD for Google for Jobs -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"Direct Support Professional (DSP) / Group Home Caregiver",
+  "description":"Support adults with developmental disabilities in a licensed group home. Deliver person-centered daily living support, community inclusion, documentation and coordination. Minimum: meet Florida APD direct-care staff standards (preservice/core trainings), Level 2 background screening, CPR/First Aid. CNA preferred.",
+  "datePosted":"2025-09-25",
+  "validThrough":"2026-03-31",
+  "employmentType":["FULL_TIME","PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"31-1122"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"Certified Nursing Assistant (CNA)",
+  "description":"Provide personal care, observation and documentation in a home-like setting. Assist with ambulation, hygiene, nutrition and activities; collaborate with RNs and leadership. Minimum: active Florida CNA, CPR/First Aid, Level 2 background screening, and APD-required trainings (e.g., assistance with self-administration of medication).",
+  "datePosted":"2025-09-25",
+  "validThrough":"2026-03-31",
+  "employmentType":["FULL_TIME","PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"31-1131"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"JobPosting",
+  "title":"LPN / RN (PRN or Part-time)",
+  "description":"Provide clinical oversight, care planning and coordination with providers; coach staff on documentation and protocols; medication oversight per APD and nursing standards. Minimum: active Florida nursing license (LPN or RN), CPR/First Aid, Level 2 background screening, role-specific APD trainings.",
+  "datePosted":"2025-09-25",
+  "validThrough":"2026-03-31",
+  "employmentType":["PART_TIME"],
+  "directApply":true,
+  "hiringOrganization":{
+    "@type":"Organization",
+    "name":"T&T Serenity Care",
+    "sameAs":"https://tntserenitycare.com"
+  },
+  "jobLocation":{
+    "@type":"Place",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"241 Caldwell St",
+      "addressLocality":"Apopka",
+      "addressRegion":"FL",
+      "postalCode":"32712",
+      "addressCountry":"US"
+    }
+  },
+  "industry":"Health Care",
+  "occupationalCategory":"29-2061, 29-1141"
+}
+</script>
+
+  <!-- Main script block -->
+  <script>
+  // --- CORE FUNCTIONALITY ---
+  (function(){
+    // Set footer year
+    const yearEl = document.getElementById('year');
+    if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Mobile menu logic
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('mobile-nav');
+    const backdrop = document.getElementById('menuBackdrop');
+    if(btn && panel && backdrop){
+      const open = () => { panel.hidden = false; btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+      const close = () => { panel.hidden = true; btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+      btn.addEventListener('click', () => (panel.hidden ? open() : close()));
+      backdrop.addEventListener('click', close);
+      window.addEventListener('keydown', (e) => { if(e.key === 'Escape' && !panel.hidden) close(); });
+      panel.addEventListener('click', (e) => { if (e.target.closest('a')) close(); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 821 && !panel.hidden) close(); });
+    }
+
+    // Map chooser toggle
+    const mapLink = document.getElementById('mapLink');
+    const mapChooser = document.getElementById('mapChooser');
+    if(mapLink && mapChooser){
+      mapLink.addEventListener('click', (e)=>{ e.preventDefault(); mapChooser.hidden = !mapChooser.hidden; });
+    }
+  })();
+
+  // --- CONTACT FORM LOGIC ---
+  (function(){
+    const form = document.getElementById('contactForm');
+    if(!form) return;
+
+    const btn = document.getElementById('sendBtn');
+    const status = document.getElementById('formStatus');
+    const TO = 'info+websiteform@tntserenitycare.com'; // destination
+    const ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxx' — leave empty to use mailto fallback
+
+    // Dynamic field visibility based on role
+    const roleRadios = document.querySelectorAll('input[name="type"]');
+    const orgWrap = document.getElementById('dyn-org');
+    const personWrap = document.getElementById('dyn-person');
+    const caseWrap = document.getElementById('dyn-case');
+    const otherWrap = document.getElementById('dyn-other');
+    const show = (el, on) => { if(el) el.hidden = !on; };
+    const getRole = () => (document.querySelector('input[name="type"]:checked')?.value || '');
+    const updateDynamic = () => {
+      const v = getRole();
+      show(orgWrap, ['Support Coordinator','Facility/Provider','Pharmacy','APD Representative'].includes(v));
+      show(personWrap, ['Support Coordinator','APD Representative','Individual/Family'].includes(v));
+      show(caseWrap, ['Facility/Provider','Pharmacy'].includes(v));
+      show(otherWrap, v === 'Other');
+    };
+
+    // Analytics (optional)
+    const analytics = { track(event, props={}){ (window.dataLayer = window.dataLayer || []).push({event, ...props, ts: Date.now()}); } };
+    
+    roleRadios.forEach(r => r.addEventListener('change', () => {
+      updateDynamic();
+      analytics.track('contact_role_select', { role: getRole() });
+    }));
+
+    // Form submission handler
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const trap = form.querySelector('[name="_gotcha"]');
-      if (trap && trap.value) return;
-      const name = (document.getElementById('job-name').value||'').trim();
-      const email = (document.getElementById('job-email').value||'').trim();
-      const phone = (document.getElementById('job-phone').value||'').trim();
-      const role = (document.getElementById('job-role').value||'').trim();
-      const link = (document.getElementById('job-link').value||'').trim();
-      const msg = (document.getElementById('job-message').value||'').trim();
-      if(!name || !email){ status.textContent='Please include your name and email.'; status.style.color='#b91c1c'; return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      try{
-        if(ENDPOINT){
-          const payload = { name, email, phone, role, link, message: msg, _subject: `Application: ${role} — ${name}` };
-          const res = await fetch(ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body: JSON.stringify(payload) });
-          if(!res.ok) throw new Error('Network');
-          status.textContent='Thanks! Your application has been sent.'; status.style.color='#166534'; form.reset();
-        } else {
-          const subject = `Application: ${role} — ${name}`;
-          const body = `Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Role: ${role}
-Resume/Link: ${link}
+      if (trap && trap.value) return; // bot detected
 
-Message:
-${msg}`;
-          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          status.textContent='Opening your email app to send…'; status.style.color='#166534';
+      const name = (form.querySelector('[name="name"]')?.value||'').trim();
+      const contact = (form.querySelector('[name="contact"]')?.value||'').trim();
+      const message = (form.querySelector('[name="message"]')?.value||'').trim();
+      const ctype = getRole();
+
+      if(!name || !contact || !message || !ctype){
+        status.textContent='Please fill in all required fields.';
+        status.style.color='#b91c1c';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const payload = {
+            name,
+            contact,
+            type: ctype,
+            org: (form.querySelector('[name="org"]')?.value||'').trim(),
+            person: (form.querySelector('[name="person"]')?.value||'').trim(),
+            apdid: (form.querySelector('[name="apdid"]')?.value||'').trim(),
+            caseNo: (form.querySelector('[name="case"]')?.value||'').trim(),
+            other: (form.querySelector('[name="other"]')?.value||'').trim(),
+            message,
+            _subject:`Website form (T&T) — ${name}`,
+            _to: TO
+        };
+        
+        analytics.track('contact_submit', { role: ctype, hasOrg: !!payload.org, hasPerson: !!payload.person });
+
+        if (ENDPOINT) {
+          const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Accept':'application/json','Content-Type':'application/json' }, body: JSON.stringify(payload) });
+          if(!res.ok) throw new Error('Network error');
+          status.textContent = 'Thanks! Your message was sent.';
+          status.style.color = '#166534';
+          form.reset();
+          updateDynamic();
+        } else {
+          // Mailto fallback
+          const subject = `Website form (T&T) — ${name}`;
+          const lines = [
+            `Name: ${payload.name}`,
+            `Contact: ${payload.contact}`,
+            `I am a: ${payload.type}`,
+            payload.org ? `Organization: ${payload.org}` : '',
+            payload.person ? `Participant/Individual: ${payload.person}` : '',
+            payload.apdid ? `APD ID/Case: ${payload.apdid}` : '',
+            payload.caseNo ? `Referral/Rx/Case #: ${payload.caseNo}` : '',
+            payload.other ? `Other role: ${payload.other}` : '',
+            '',
+            'Message:',
+            payload.message
+          ].filter(Boolean).join('\n');
+          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
+          status.textContent = 'Opening your email app to send…';
+          status.style.color='#166534';
         }
       } catch(err){
-        status.textContent='Sorry, something went wrong. Please try again.'; status.style.color='#b91c1c';
+        status.textContent = 'Sorry, something went wrong. Please try again in a moment.';
+        status.style.color='#b91c1c';
       } finally {
-        btn.disabled=false; btn.textContent='Submit application';
+        btn.disabled = false;
+        btn.textContent = 'Send message';
       }
     });
+
+    // Initialize visibility on page load
+    updateDynamic();
   })();
-  </script>
 
-  <!-- Footer year + Animated gradient orbs on canvas + Mobile menu JS -->
-  <script>
-  // Current year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Animated gradient orbs
+  // --- ANIMATED GRADIENT BACKGROUND ---
   (function(){
     const canvas = document.getElementById('grad');
+    if(!canvas) return;
     const ctx = canvas.getContext('2d');
     const DPR = window.devicePixelRatio || 1;
     const orbs = Array.from({ length: 7 }).map(() => ({
@@ -272,6 +680,8 @@ ${msg}`;
       vx: (Math.random()-0.5)*0.0006, vy: (Math.random()-0.5)*0.0006,
       hue: Math.floor(180 + Math.random()*180), alpha: 0.18 + Math.random()*0.18
     }));
+    let animationFrameId;
+
     function draw(){
       const rect = canvas.getBoundingClientRect();
       canvas.width = Math.max(1, Math.floor(rect.width * DPR));
@@ -282,88 +692,30 @@ ${msg}`;
       g.addColorStop(0,'#14b8a6'); g.addColorStop(0.5,'#6366f1'); g.addColorStop(1,'#d946ef');
       ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
       orbs.forEach(o=>{ o.x+=o.vx; o.y+=o.vy; if(o.x<-0.2||o.x>1.2) o.vx*=-1; if(o.y<-0.2||o.y>1.2) o.vy*=-1; const cx=o.x*rect.width, cy=o.y*rect.height; const rg=ctx.createRadialGradient(cx,cy,0,cx,cy,o.r); rg.addColorStop(0,`hsla(${o.hue},80%,60%,${o.alpha})`); rg.addColorStop(1,`hsla(${(o.hue+60)%360},70%,50%,0)`); ctx.fillStyle=rg; ctx.beginPath(); ctx.arc(cx,cy,o.r,0,Math.PI*2); ctx.fill(); });
-      requestAnimationFrame(draw);
+      animationFrameId = requestAnimationFrame(draw);
     }
+    
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(media.matches){
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(rect.width * DPR));
-      canvas.height = Math.max(1, Math.floor(rect.height * DPR));
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-      const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
-      g.addColorStop(0,'#14b8a6'); g.addColorStop(0.5,'#6366f1'); g.addColorStop(1,'#d946ef');
-      ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
-    } else { draw(); }
-  })();
-
-  // Mobile menu logic (vanilla JS)
-  (function(){
-    const btn = document.getElementById('menuBtn');
-    const panel = document.getElementById('mobile-nav');
-    const backdrop = document.getElementById('menuBackdrop');
-
-    const open = () => {
-      panel.hidden = false; btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden';
-    };
-    const close = () => {
-      panel.hidden = true; btn.setAttribute('aria-expanded','false'); document.body.style.overflow='';
-    };
-
-    btn.addEventListener('click', () => (panel.hidden ? open() : close()));
-    backdrop.addEventListener('click', close);
-
-    // Close on ESC
-    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') close(); });
-    // Close when clicking a link inside the sheet
-    panel.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (a) close();
-    });
-    // If resized to desktop, ensure menu is closed
-    window.addEventListener('resize', () => { if (window.innerWidth >= 821) close(); });
-  })();
-    // Contact form submission (uses mailto fallback; optionally set a backend endpoint)
-  (function(){
-    const form = document.getElementById('contactForm');
-    if(!form) return;
-    const btn = document.getElementById('sendBtn');
-    const status = document.getElementById('formStatus');
-    const TO = 'info+wesbiteform@tntserenitycare.com'; // destination
-    const ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxx' — leave empty to use mailto fallback
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const trap = form.querySelector('[name="_gotcha"]');
-      if (trap && trap.value) return; // bot detected
-      const name = (document.getElementById('cf-name').value||'').trim();
-      const contact = (document.getElementById('cf-contact').value||'').trim();
-      const message = (document.getElementById('cf-message').value||'').trim();
-      if(!name || !contact || !message){ status.textContent='Please fill in all fields.'; status.style.color='#b91c1c'; return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      try {
-        if (ENDPOINT) {
-          const payload = { name, contact, message, _subject:`Website form (T&T) — ${name}`, _to: TO };
-          const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Accept':'application/json','Content-Type':'application/json' }, body: JSON.stringify(payload) });
-          if(!res.ok) throw new Error('Network error');
-          status.textContent = 'Thanks! Your message was sent.'; status.style.color = '#166534';
-          form.reset();
+    const handleMotionChange = () => {
+        if (media.matches) {
+            cancelAnimationFrame(animationFrameId);
+            // Draw a static gradient as a fallback
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = Math.max(1, Math.floor(rect.width * DPR));
+            canvas.height = Math.max(1, Math.floor(rect.height * DPR));
+            ctx.setTransform(DPR,0,0,DPR,0,0);
+            const g = ctx.createLinearGradient(0,0,rect.width,rect.height);
+            g.addColorStop(0,'#14b8a6'); g.addColorStop(0.5,'#6366f1'); g.addColorStop(1,'#d946ef');
+            ctx.fillStyle = g; ctx.fillRect(0,0,rect.width,rect.height);
         } else {
-          const subject = `Website form (T&T) — ${name}`;
-          const body = `Name: ${name}
-Contact: ${contact}
-
-Message:
-${message}`;
-          window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          status.textContent = 'Opening your email app to send…'; status.style.color='#166534';
+            draw();
         }
-      } catch(err){
-        status.textContent = 'Sorry, something went wrong. Please try again in a moment.'; status.style.color='#b91c1c';
-      } finally {
-        btn.disabled = false; btn.textContent = 'Send message';
-      }
-    });
+    };
+    
+    media.addEventListener('change', handleMotionChange);
+    handleMotionChange(); // Initial check
   })();
   </script>
 </body>
 </html>
+
