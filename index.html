@@ -90,8 +90,21 @@
   .mobile-panel .link{ display:block; padding:14px 16px; text-decoration:none; color:inherit; border-bottom:1px solid rgba(0,0,0,0.06); background: var(--glass-bg-light); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
   .mobile-panel .link:last-child{ border-bottom:none; }
   
+  /* Why Us Section Layout */
+  .why-us-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    align-items: center;
+    gap: 2rem;
+  }
+  @media (min-width: 900px) {
+    .why-us-grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
   /* Founders responsive gallery */
-  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items:stretch; }
+  .founders-grid{ display:grid; gap:clamp(0.75rem,2vw,1rem); grid-template-columns: 1fr 1fr; align-items:stretch; }
   .founder-card{ position:relative; border-radius: var(--radius); overflow:hidden; }
   .founder-photo{ width:100%; height:100%; aspect-ratio: 3/4; object-fit:cover; object-position: 50% 35%; transform:translateZ(0); transition: transform .5s ease; }
   .founder-card:nth-child(2) .founder-photo{ object-position: 50% 30%; }
@@ -205,7 +218,7 @@
       <div class="glass" style="padding:clamp(2rem,4vw,2.5rem)">
         <h2>Why T&T Serenity Care?</h2>
         <p class="subtitle">Founded by nurses, driven by a passion for quality of life.</p>
-        <div style="display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top:1.5rem;">
+        <div class="why-us-grid">
           
           <!-- Text content was missing here -->
           <div> 
