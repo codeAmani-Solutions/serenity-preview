@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#ffffff"/>
 <title>T&T Serenity Care — One‑Page (GitHub Pages, Mobile Menu)</title>
-<style>
+  <style>
   :root{
-    --glass-bg-light: rgba(255,255,255,0.25);
+    --glass-bg-light: rgba(255,255,255,0.65);
     --glass-bg-dark: rgba(18,18,18,0.72);
     --glass-border-light: rgba(255,255,255,0.55);
     --glass-border-dark: rgba(255,255,255,0.16);
@@ -25,7 +25,7 @@
   section { scroll-margin-top: calc(var(--header-h) + 8px); }
 
   .glass{background:var(--glass-bg-light); -webkit-backdrop-filter: blur(28px) saturate(160%); backdrop-filter: blur(28px) saturate(160%); border-radius: var(--radius); box-shadow: var(--shadow); border:1px solid var(--glass-border-light);}
-  .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+  .hover-float{ transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease; }
   .hover-float:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 16px 40px rgba(0,0,0,.22); }
   .section{ padding: clamp(3rem, 6vw, 6rem) 1rem; }
   .container{ max-width: 1100px; margin: 0 auto; }
@@ -121,6 +121,10 @@
   .founder-text h3 {
     margin-top: 0;
     font-size: 1.25rem;
+  }
+
+  .founder-text.hover-float:hover {
+    background: rgba(230, 225, 255, 0.75); /* A subtle lavender tint on hover */
   }
 
   /* Founder Photo Cards */
@@ -247,22 +251,22 @@
         <div class="why-us-grid">
           
           <div class="founder-bio-card">
-            <figure class="founder-card glass">
+            <figure class="founder-card glass hover-float">
               <img class="founder-photo" src="./assets/teresia-kirumba.jpg" alt="Teresia Kirumba, RN BSN — Co‑Founder"/>
               <figcaption class="founder-cap"><strong>Teresia Kirumba, RN BSN</strong><span>Co‑Founder</span></figcaption>
             </figure>
-            <div class="founder-text glass">
+            <div class="founder-text glass hover-float">
               <h3>The Leader's Vision</h3>
               <p><strong>Teresia Kirumba’s</strong> journey in nursing is defined by leadership in the moments that matter most. As a Deputy Incident Commander during the COVID-19 pandemic, she was responsible for the safety and operational success of over 300 frontline staff. Her expertise in disaster management and health administration isn’t just about logistics; it’s about creating systems of safety and reliability that allow true, compassionate care to flourish, ensuring every detail is managed so that individuals receive the unwavering support they deserve.</p>
             </div>
           </div>
 
           <div class="founder-bio-card">
-             <figure class="founder-card glass">
+             <figure class="founder-card glass hover-float">
               <img class="founder-photo" src="./assets/teresia-kimani.jpg" alt="Teresia Kimani, RN — Co‑Founder"/>
               <figcaption class="founder-cap"><strong>Teresia Kimani, RN</strong><span>Co‑Founder</span></figcaption>
             </figure>
-            <div class="founder-text glass">
+            <div class="founder-text glass hover-float">
               <h3>The Healer's Touch</h3>
               <p><strong>Teresia Kimani’s</strong> path is one of deep, personal connection and hands-on care. With over 13 years at the bedside, she has dedicated her career to understanding the nuanced needs of every person she serves. Her work during the pandemic involved not only clinical skill but profound empathy, easing the fears of vulnerable patients. It is this heart for service and her gift for building trust that ensures every resident at T&T Serenity Care is seen, heard, and honored as an individual.</p>
             </div>
@@ -762,4 +766,6 @@
   </script>
 </body>
 </html>
+
+
 
