@@ -136,12 +136,10 @@
   /* Background layers */
   @keyframes kenBurns {
     0% {
-      background-size: 100%;
-      background-position: center center;
+      transform: scale(1.05);
     }
     100% {
-      background-size: 110%;
-      background-position: top center;
+      transform: scale(1.15);
     }
   }
   .bg-canvas{ position: fixed; inset: 0; z-index: -2; opacity: .35; }
@@ -550,110 +548,7 @@
               <div>📍 <a href="#" id="mapLink">241 Caldwell St, Apopka, FL 32712</a></div>
               <div id="mapChooser" class="map-chooser" hidden>
                 <a class="btn btn-ghost small" target="_blank" rel="noopener" href="https://maps.apple.com/?q=241+Caldwell+St,+Apopka,+FL+32712">Open in Apple Maps</a>
-                <a class="btn btn-primary small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=241+Caldwell+St,+Apopka,+FL+32712">Open in Google Maps</a>
-              </div>
-            </div>
-          </div>
-          <form id="contactForm" class="glass" style="padding:1rem" novalidate>
-            <div class="card-title">Send a message</div>
-            <label class="block">Full name<br/>
-              <input id="cf-name" name="name" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-            </label>
-            <label class="block" style="display:block;margin-top:.75rem">Email or phone<br/>
-              <input id="cf-contact" name="contact" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-            </label>
-            <fieldset class="block" style="display:block;margin-top:.75rem;border:0;padding:0">
-              <legend>I am a…</legend>
-              <div class="choices" role="radiogroup" aria-label="Contact type">
-                <input class="choice-radio" type="radio" id="role-sc" name="type" value="Support Coordinator">
-                <label class="choice-label" for="role-sc">Support Coordinator</label>
-                <input class="choice-radio" type="radio" id="role-fac" name="type" value="Facility/Provider">
-                <label class="choice-label" for="role-fac">Facility/Provider</label>
-                <input class="choice-radio" type="radio" id="role-pharm" name="type" value="Pharmacy">
-                <label class="choice-label" for="role-pharm">Pharmacy</label>
-                <input class="choice-radio" type="radio" id="role-ind" name="type" value="Individual/Family">
-                <label class="choice-label" for="role-ind">Individual/Family</label>
-                <input class="choice-radio" type="radio" id="role-apd" name="type" value="APD Representative">
-                <label class="choice-label" for="role-apd">APD Representative</label>
-                <input class="choice-radio" type="radio" id="role-other" name="type" value="Other">
-                <label class="choice-label" for="role-other">Other</label>
-              </div>
-            </fieldset>
-
-            <div id="dyn-org" hidden>
-              <label class="block" style="display:block;margin-top:.75rem">Organization / Agency (optional)<br/>
-                <input id="cf-org" name="org" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-              </label>
-            </div>
-
-            <div id="dyn-person" hidden>
-              <label class="block" style="display:block;margin-top:.75rem">Participant / Individual name (optional)<br/>
-                <input id="cf-person" name="person" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-              </label>
-              <label class="block" style="display:block;margin-top:.75rem">APD Client ID or Case # (optional)<br/>
-                <input id="cf-id" name="apdid" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-              </label>
-            </div>
-
-            <div id="dyn-case" hidden>
-              <label class="block" style="display:block;margin-top:.75rem">Referral / Rx / Case # (optional)<br/>
-                <input id="cf-case" name="case" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-              </label>
-            </div>
-
-            <div id="dyn-other" hidden>
-              <label class="block" style="display:block;margin-top:.75rem">Tell us who you are (optional)<br/>
-                <input id="cf-other" name="other" placeholder="e.g., Guardian, Advocate, Vendor" style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"/>
-              </label>
-            </div>
-            <label class="block" style="display:block;margin-top:.75rem">How can we help?<br/>
-              <textarea id="cf-message" name="message" rows="4" required style="width:100%;padding:.75rem;margin-top:.25rem;border-radius:12px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.6)"></textarea>
-            </label>
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"/>
-            <button id="sendBtn" type="submit" class="btn btn-primary" style="margin-top:.75rem">Send message</button>
-            <p id="formStatus" style="margin:.5rem 0 0; font-size:.9rem; opacity:.9"></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FOOTER -->
-  <footer class="section" style="padding-top:0">
-    <div class="container">
-      <div class="glass" style="padding:1rem 1.25rem">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
-          <div>
-            <div style="font-weight:700">T&T Serenity Care</div>
-            <div style="opacity:.8">© <span id="year"></span> T&T Serenity Care. All rights reserved.</div>
-          </div>
-          <nav style="opacity:.9;display:flex;gap:1rem">
-            <a href="#privacy">Privacy</a>
-            <a href="#terms">Terms</a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JSON-LD for SEO -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"T&T Serenity Care",
-  "email":"info@tntserenitycare.com",
-  "telephone":"+1-407-703-2787",
-  "address":{
-    "@type":"PostalAddress",
-    "streetAddress":"241 Caldwell St",
-    "addressLocality":"Apopka",
-    "addressRegion":"FL",
-    "postalCode":"32712",
-    "addressCountry":"US"
-  },
-  "areaServed":"Central Florida",
-  "url":"https://tntserenitycare.com"
+                <a class="btn btn-primary small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=241+Caltntserenitycare.com"
 }
 </script>
 
@@ -939,3 +834,4 @@
   </script>
 </body>
 </html>
+
